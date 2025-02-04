@@ -2518,55 +2518,64 @@ namespace CodeWalker.GameFiles
                 //UpdateStatus("Loading " + req.RpfFileEntry.Name + "...");
                 //}
 
-                switch (req.Type)
+#if !DEBUG
+                try
                 {
-                    case GameFileType.Ydr:
-                        req.Loaded = LoadFile(req as YdrFile);
-                        break;
-                    case GameFileType.Ydd:
-                        req.Loaded = LoadFile(req as YddFile);
-                        break;
-                    case GameFileType.Ytd:
-                        req.Loaded = LoadFile(req as YtdFile);
-                        //if (req.Loaded) AddTextureLookups(req as YtdFile);
-                        break;
-                    case GameFileType.Ymap:
-                        YmapFile y = req as YmapFile;
-                        req.Loaded = LoadFile(y);
-                        if (req.Loaded) y.InitYmapEntityArchetypes(this);
-                        break;
-                    case GameFileType.Yft:
-                        req.Loaded = LoadFile(req as YftFile);
-                        break;
-                    case GameFileType.Ybn:
-                        req.Loaded = LoadFile(req as YbnFile);
-                        break;
-                    case GameFileType.Ycd:
-                        req.Loaded = LoadFile(req as YcdFile);
-                        break;
-                    case GameFileType.Yed:
-                        req.Loaded = LoadFile(req as YedFile);
-                        break;
-                    case GameFileType.Ynv:
-                        req.Loaded = LoadFile(req as YnvFile);
-                        break;
-                    case GameFileType.Yld:
-                        req.Loaded = LoadFile(req as YldFile);
-                        break;
-                    default:
-                        break;
+#endif
+
+                    switch (req.Type)
+                    {
+                        case GameFileType.Ydr:
+                            req.Loaded = LoadFile(req as YdrFile);
+                            break;
+                        case GameFileType.Ydd:
+                            req.Loaded = LoadFile(req as YddFile);
+                            break;
+                        case GameFileType.Ytd:
+                            req.Loaded = LoadFile(req as YtdFile);
+                            //if (req.Loaded) AddTextureLookups(req as YtdFile);
+                            break;
+                        case GameFileType.Ymap:
+                            YmapFile y = req as YmapFile;
+                            req.Loaded = LoadFile(y);
+                            if (req.Loaded) y.InitYmapEntityArchetypes(this);
+                            break;
+                        case GameFileType.Yft:
+                            req.Loaded = LoadFile(req as YftFile);
+                            break;
+                        case GameFileType.Ybn:
+                            req.Loaded = LoadFile(req as YbnFile);
+                            break;
+                        case GameFileType.Ycd:
+                            req.Loaded = LoadFile(req as YcdFile);
+                            break;
+                        case GameFileType.Yed:
+                            req.Loaded = LoadFile(req as YedFile);
+                            break;
+                        case GameFileType.Ynv:
+                            req.Loaded = LoadFile(req as YnvFile);
+                            break;
+                        case GameFileType.Yld:
+                            req.Loaded = LoadFile(req as YldFile);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    UpdateStatus((req.Loaded ? "Loaded " : "Error loading ") + req.ToString());
+
+                    if (!req.Loaded)
+                    {
+                        ErrorLog("Error loading " + req.ToString());
+                    }
+#if !DEBUG
                 }
-
-                string str = (req.Loaded ? "Loaded " : "Error loading ") + req.ToString();
-                //string str = string.Format("{0}: {1}: {2}", requestQueue.Count, (req.Loaded ? "Loaded" : "Error loading"), req);
-
-                UpdateStatus(str);
-                //ErrorLog(str);
-                if (!req.Loaded)
+                catch (Exception ex)
                 {
-                    ErrorLog("Error loading " + req.ToString());
+                    ErrorLog($"Failed to load file {req.Name}: {ex.Message}");
+                    //TODO: try to stop subsequent attempts to load this!
                 }
-
+#endif
 
                 //loadedsomething = true;
             }
@@ -3194,9 +3203,7 @@ namespace CodeWalker.GameFiles
             {
                 foreach (RpfEntry entry in file.AllEntries)
                 {
-#if !DEBUG
-                    try
-#endif
+                    //try
                     {
                         var n = entry.NameLower;
                         if (!(n.EndsWith(".pso") ||
@@ -3264,13 +3271,11 @@ namespace CodeWalker.GameFiles
                             }
                         }
                     }
-#if !DEBUG
-                    catch (Exception ex)
-                    {
-                        UpdateStatus("Error! " + ex.ToString());
-                        exceptions.Add(ex);
-                    }
-#endif
+                    //catch (Exception ex)
+                    //{
+                    //    UpdateStatus("Error! " + ex.ToString());
+                    //    exceptions.Add(ex);
+                    //}
                 }
             }
 
@@ -3372,9 +3377,7 @@ namespace CodeWalker.GameFiles
             {
                 foreach (RpfEntry entry in file.AllEntries)
                 {
-#if !DEBUG
-                    try
-#endif
+                    //try
                     {
                         var rfe = entry as RpfFileEntry;
                         if (rfe == null) continue;
@@ -3389,13 +3392,11 @@ namespace CodeWalker.GameFiles
                             //PsoTypes.EnsurePsoTypes(cut.Pso);
                         }
                     }
-#if !DEBUG
-                    catch (Exception ex)
-                    {
-                        UpdateStatus("Error! " + ex.ToString());
-                        exceptions.Add(ex);
-                    }
-#endif
+                    //catch (Exception ex)
+                    //{
+                    //    UpdateStatus("Error! " + ex.ToString());
+                    //    exceptions.Add(ex);
+                    //}
                 }
             }
             
@@ -3413,9 +3414,7 @@ namespace CodeWalker.GameFiles
             {
                 foreach (RpfEntry entry in file.AllEntries)
                 {
-#if !DEBUG
-                    try
-#endif
+                    //try
                     {
                         var rfe = entry as RpfFileEntry;
                         if (rfe == null) continue;
@@ -3429,13 +3428,11 @@ namespace CodeWalker.GameFiles
 
                         }
                     }
-#if !DEBUG
-                    catch (Exception ex)
-                    {
-                        UpdateStatus("Error! " + ex.ToString());
-                        exceptions.Add(ex);
-                    }
-#endif
+                    //catch (Exception ex)
+                    //{
+                    //    UpdateStatus("Error! " + ex.ToString());
+                    //    exceptions.Add(ex);
+                    //}
                 }
             }
 
@@ -3444,16 +3441,14 @@ namespace CodeWalker.GameFiles
         }
         public void TestYeds()
         {
-
+            bool xmltest = true;
             var exceptions = new List<Exception>();
 
             foreach (RpfFile file in AllRpfs)
             {
                 foreach (RpfEntry entry in file.AllEntries)
                 {
-#if !DEBUG
-                    try
-#endif
+                    //try
                     {
                         var rfe = entry as RpfFileEntry;
                         if (rfe == null) continue;
@@ -3465,24 +3460,25 @@ namespace CodeWalker.GameFiles
                             YedFile yed = new YedFile(rfe);
                             RpfMan.LoadFile(yed, rfe);
 
-                            var xml = YedXml.GetXml(yed);
-                            var yed2 = XmlYed.GetYed(xml);
-                            var data2 = yed2.Save();
-                            var yed3 = new YedFile();
-                            RpfFile.LoadResourceFile(yed3, data2, 25);//full roundtrip
-                            var xml2 = YedXml.GetXml(yed3);
-                            if (xml != xml2)
-                            { }
+                            if (xmltest)
+                            {
+                                var xml = YedXml.GetXml(yed);
+                                var yed2 = XmlYed.GetYed(xml);
+                                var data2 = yed2.Save();
+                                var yed3 = new YedFile();
+                                RpfFile.LoadResourceFile(yed3, data2, 25);//full roundtrip
+                                var xml2 = YedXml.GetXml(yed3);
+                                if (xml != xml2)
+                                { }//no hitting
+                            }
 
                         }
                     }
-#if !DEBUG
-                    catch (Exception ex)
-                    {
-                        UpdateStatus("Error! " + ex.ToString());
-                        exceptions.Add(ex);
-                    }
-#endif
+                    //catch (Exception ex)
+                    //{
+                    //    UpdateStatus("Error! " + ex.ToString());
+                    //    exceptions.Add(ex);
+                    //}
                 }
             }
 
@@ -4148,7 +4144,9 @@ namespace CodeWalker.GameFiles
         }
         public void TestYfts()
         {
+            bool xmltest = true;
             bool savetest = false;
+            bool glasstest = false;
             var errorfiles = new List<RpfEntry>();
             var sb = new StringBuilder();
             var flagdict = new Dictionary<uint, int>();
@@ -4170,6 +4168,14 @@ namespace CodeWalker.GameFiles
                             {
                                 UpdateStatus("Error! " + ex.ToString());
                                 errorfiles.Add(entry);
+                            }
+                            if (xmltest && (yft != null) && (yft.Fragment != null))
+                            {
+                                var xml = YftXml.GetXml(yft);
+                                var yft2 = XmlYft.GetYft(xml);//can't do full roundtrip here due to embedded textures
+                                var xml2 = YftXml.GetXml(yft2);
+                                if (xml != xml2)
+                                { }
                             }
                             if (savetest && (yft != null) && (yft.Fragment != null))
                             {
@@ -4193,7 +4199,7 @@ namespace CodeWalker.GameFiles
 
                             }
 
-                            if (yft?.Fragment?.GlassWindows?.data_items != null)
+                            if (glasstest && (yft?.Fragment?.GlassWindows?.data_items != null))
                             {
                                 var lastf = -1;
                                 for (int i = 0; i < yft.Fragment.GlassWindows.data_items.Length; i++)
@@ -4361,9 +4367,7 @@ namespace CodeWalker.GameFiles
             {
                 foreach (RpfEntry entry in file.AllEntries)
                 {
-#if !DEBUG
-                    try
-#endif
+                    //try
                     {
                         var rfe = entry as RpfFileEntry;
                         if (rfe == null) continue;
@@ -4388,13 +4392,11 @@ namespace CodeWalker.GameFiles
 
                         }
                     }
-#if !DEBUG
-                    catch (Exception ex)
-                    {
-                        UpdateStatus("Error! " + ex.ToString());
-                        exceptions.Add(ex);
-                    }
-#endif
+                    //catch (Exception ex)
+                    //{
+                    //    UpdateStatus("Error! " + ex.ToString());
+                    //    exceptions.Add(ex);
+                    //}
                 }
             }
 
@@ -4410,9 +4412,7 @@ namespace CodeWalker.GameFiles
             {
                 foreach (RpfEntry entry in file.AllEntries)
                 {
-#if !DEBUG
-                    try
-#endif
+                    //try
                     {
                         var rfe = entry as RpfFileEntry;
                         if (rfe == null) continue;
@@ -4435,13 +4435,11 @@ namespace CodeWalker.GameFiles
 
                         }
                     }
-#if !DEBUG
-                    catch (Exception ex)
-                    {
-                        UpdateStatus("Error! " + ex.ToString());
-                        exceptions.Add(ex);
-                    }
-#endif
+                    //catch (Exception ex)
+                    //{
+                    //    UpdateStatus("Error! " + ex.ToString());
+                    //    exceptions.Add(ex);
+                    //}
                 }
             }
 

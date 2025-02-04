@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
+using System.Linq;
 using SharpDX;
 using SharpDX.XInput;
 using Device = SharpDX.Direct3D11.Device;
@@ -59,7 +60,7 @@ namespace CodeWalker
         string modelname = "dt1_tc_dufo_core";//"dt1_11_fount_decal";//"v_22_overlays";//
         string[] ymaplist;
 
-        Vector3 prevworldpos = new Vector3(0, 0, 100); //also the start pos
+        Vector3 prevworldpos = FloatUtil.ParseVector3String(Settings.Default.StartPosition);
 
 
         public GameFileCache GameFileCache { get { return gameFileCache; } }
@@ -221,6 +222,10 @@ namespace CodeWalker
             weather = Renderer.weather;
             clouds = Renderer.clouds;
 
+            CurMouseHit.WorldForm = this;
+            LastMouseHit.WorldForm = this;
+            PrevMouseHit.WorldForm = this;
+
             initedOk = Renderer.Init();
         }
 
@@ -309,7 +314,7 @@ namespace CodeWalker
 
         private MapIcon AddIcon(string name, string filename, int texw, int texh, float centerx, float centery, float scale)
         {
-            string filepath = "icons\\" + filename;
+            string filepath = PathUtil.GetFilePath("icons\\" + filename);
             try
             {
                 MapIcon mi = new MapIcon(name, filepath, texw, texh, centerx, centery, scale);
@@ -1865,6 +1870,15 @@ namespace CodeWalker
 
         public void UpdatePathYndGraphics(YndFile ynd, bool fullupdate)
         {
+            if (ynd == null)
+            {
+                return;
+            }
+
+            var selection = SelectedItem.PathNode != null
+                ? new[] { SelectedItem.PathNode }
+                : null;
+
             if (fullupdate)
             {
                 ynd.UpdateAllNodePositions();
@@ -1875,7 +1889,7 @@ namespace CodeWalker
             else
             {
                 ynd.UpdateAllNodePositions();
-                space.BuildYndVerts(ynd);
+                space.BuildYndVerts(ynd, selection);
             }
             //lock (Renderer.RenderSyncRoot)
             {
@@ -2023,6 +2037,17 @@ namespace CodeWalker
         public void UpdateAudioPlacementGraphics(RelFile rel)
         {
             audiozones.PlacementsDict.Remove(rel); //should cause a rebuild to add/remove items
+        }
+        public AudioPlacement GetAudioPlacement(RelFile rel, Dat151RelData reldata)
+        {
+            var placement = audiozones.FindPlacement(rel, reldata);
+            if (placement == null)
+            {
+                if (reldata is Dat151AmbientZone az) placement = new AudioPlacement(rel, az);
+                if (reldata is Dat151AmbientRule ar) placement = new AudioPlacement(rel, ar);
+                if (reldata is Dat151StaticEmitter se) placement = new AudioPlacement(rel, se);
+            }
+            return placement;
         }
 
 
@@ -3140,7 +3165,7 @@ namespace CodeWalker
                         MapBox mb = new MapBox();
 
                         int lanestot = ln.LaneCountForward + ln.LaneCountBackward;
-                        float lanewidth = n.IsPedNode ? 0.5f : 5.5f;
+                        float lanewidth = ln.GetLaneWidth();
                         float inner = ln.LaneOffset * lanewidth;// 0.0f;
                         float outer = inner + Math.Max(lanewidth * ln.LaneCountForward, 0.5f);
                         float totwidth = lanestot * lanewidth;
@@ -3416,7 +3441,7 @@ namespace CodeWalker
             }
             else
             {
-                var ms = MapSelection.FromProjectObject(obj, parent);
+                var ms = MapSelection.FromProjectObject(this, obj, parent);
                 if (!ms.HasValue)
                 {
                     SelectItem(null, addSelection);
@@ -3446,7 +3471,7 @@ namespace CodeWalker
                 mhitv.Drawable = gameFileCache.TryGetDrawable(mhitv.Archetype); //no drawable given.. try to get it from the cache.. if it's not there, drawable info won't display...
             }
 
-
+            var oldnode = SelectedItem.PathNode;
             bool change = false;
             if (mhit != null)
             {
@@ -3593,6 +3618,19 @@ namespace CodeWalker
             if (notifyProject && change && (ProjectForm != null) && (!addSelection || manualSelection))
             {
                 ProjectForm.OnWorldSelectionChanged(SelectedItem);
+            }
+
+            var newnode = SelectedItem.PathNode;
+            if (newnode != oldnode)//this is to allow junction heightmaps to be displayed when selecting a junction node
+            {
+                UpdatePathYndGraphics(oldnode?.Ynd, false);
+                UpdatePathYndGraphics(newnode?.Ynd, false);
+            }
+
+            if (change)
+            {
+                // If an item has been selected the user is likely to use a keybind. We need focus!
+                //Focus();//DISABLED THIS due to causing problems with using arrows to select in project window!
             }
         }
         public void SelectMulti(MapSelection[] items, bool addSelection = false, bool notifyProject = true)
@@ -4130,45 +4168,143 @@ namespace CodeWalker
         private void LoadWorld()
         {
 
-            UpdateStatus("Loading timecycles...");
-            timecycle.Init(gameFileCache, UpdateStatus);
-            timecycle.SetTime(Renderer.timeofday);
-
-            UpdateStatus("Loading materials...");
-            BoundsMaterialTypes.Init(gameFileCache);
-
-            UpdateStatus("Loading weather...");
-            weather.Init(gameFileCache, UpdateStatus, timecycle);
-            UpdateWeatherTypesComboBox(weather);
-
-            UpdateStatus("Loading clouds...");
-            clouds.Init(gameFileCache, UpdateStatus, weather);
-            UpdateCloudTypesComboBox(clouds);
-
-            UpdateStatus("Loading water...");
-            water.Init(gameFileCache, UpdateStatus);
-
-            UpdateStatus("Loading trains...");
-            trains.Init(gameFileCache, UpdateStatus);
-
-            UpdateStatus("Loading scenarios...");
-            scenarios.Init(gameFileCache, UpdateStatus, timecycle);
-
-            UpdateStatus("Loading popzones...");
-            popzones.Init(gameFileCache, UpdateStatus);
-
-            UpdateStatus("Loading heightmaps...");
-            heightmaps.Init(gameFileCache, UpdateStatus);
-
-            UpdateStatus("Loading watermaps...");
-            watermaps.Init(gameFileCache, UpdateStatus);
-
-            UpdateStatus("Loading audio zones...");
-            audiozones.Init(gameFileCache, UpdateStatus);
-
-            UpdateStatus("Loading world...");
-            space.Init(gameFileCache, UpdateStatus);
-
+#if !DEBUG
+            try
+            {
+#endif
+                UpdateStatus("Loading timecycles...");
+                timecycle.Init(gameFileCache, UpdateStatus);
+                timecycle.SetTime(Renderer.timeofday);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading timecycles: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading materials...");
+                BoundsMaterialTypes.Init(gameFileCache);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading materials: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading weather...");
+                weather.Init(gameFileCache, UpdateStatus, timecycle);
+                UpdateWeatherTypesComboBox(weather);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading weather files, ensure you do not have FiveMods installed or any Redux mod. Game may require reinstall.: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading clouds...");
+                clouds.Init(gameFileCache, UpdateStatus, weather);
+                UpdateCloudTypesComboBox(clouds);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading clouds: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading water...");
+                water.Init(gameFileCache, UpdateStatus);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading water: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading trains...");
+                trains.Init(gameFileCache, UpdateStatus);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading trains: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading scenarios...");
+                scenarios.Init(gameFileCache, UpdateStatus, timecycle);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading scenarios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading popzones...");
+                popzones.Init(gameFileCache, UpdateStatus);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading popzones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading heightmaps...");
+                heightmaps.Init(gameFileCache, UpdateStatus);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading heightmaps: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading watermaps...");
+                watermaps.Init(gameFileCache, UpdateStatus);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading watermaps: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading audio zones...");
+                audiozones.Init(gameFileCache, UpdateStatus);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading audio zones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+#endif
+                UpdateStatus("Loading world...");
+                space.Init(gameFileCache, UpdateStatus);
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading world: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+#endif
             UpdateStatus("World loaded");
 
         }
@@ -4236,7 +4372,7 @@ namespace CodeWalker
             }
             catch
             {
-                MessageBox.Show("Keys not found! This shouldn't happen.");
+                MessageBox.Show("Keys not found! This shouldn't happen, GTA5.exe outdated? CodeWalker outdated?");
                 Close();
                 return;
             }
@@ -4248,8 +4384,20 @@ namespace CodeWalker
             EnableCacheDependentUI();
 
 
-
-            LoadWorld();
+#if !DEBUG
+            try
+            {
+#endif
+                LoadWorld();
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load world: {ex.Message}");
+                Close();
+                return;
+            }
+#endif
 
 
 
@@ -4261,23 +4409,47 @@ namespace CodeWalker
             Task.Run(() => {
                 while (formopen && !IsDisposed) //renderer content loop
                 {
-                    bool rcItemsPending = Renderer.ContentThreadProc();
-
-                    if (!rcItemsPending)
+#if !DEBUG
+                    try
                     {
-                        Thread.Sleep(1); //sleep if there's nothing to do
+#endif
+                        bool rcItemsPending = Renderer.ContentThreadProc();
+                        if (!rcItemsPending)
+                        {
+                            Thread.Sleep(1); //sleep if there's nothing to do
+                        }
+#if !DEBUG
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Renderer Failed: {ex.Message}");
+                        Close();
+                        return;
+                    }
+#endif
                 }
             });
 
             while (formopen && !IsDisposed) //main asset loop
             {
-                bool fcItemsPending = gameFileCache.ContentThreadProc();
-
-                if (!fcItemsPending)
+#if !DEBUG
+                try
                 {
-                    Thread.Sleep(1); //sleep if there's nothing to do
+#endif
+                    bool fcItemsPending = gameFileCache.ContentThreadProc();
+                    if (!fcItemsPending)
+                    {
+                        Thread.Sleep(1); //sleep if there's nothing to do
+                    }
+#if !DEBUG
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"GameFileCache Failed: {ex.Message}");
+                    Close();
+                    return;
+                }
+#endif
             }
 
             gameFileCache.Clear();
@@ -4655,8 +4827,10 @@ namespace CodeWalker
             WeatherComboBox.SelectedIndex = Math.Max(WeatherComboBox.FindString(s.Weather), 0);
             WeatherRegionComboBox.SelectedIndex = Math.Max(WeatherRegionComboBox.FindString(s.Region), 0);
             Renderer.individualcloudfrag = s.Clouds;
-            NaturalAmbientLightCheckBox.Checked = s.NatrualAmbientLight;
+            NaturalAmbientLightCheckBox.Checked = s.NaturalAmbientLight;
             ArtificialAmbientLightCheckBox.Checked = s.ArtificialAmbientLight;
+            SavePositionCheckBox.Checked = s.SavePosition;
+            SaveTimeOfDayCheckBox.Checked = s.SaveTimeOfDay;
             
             SetTimeOfDay(s.TimeOfDay);
             Renderer.SetWeatherType(s.Weather);
@@ -4698,19 +4872,45 @@ namespace CodeWalker
             s.ShowStatusBar = StatusBarCheckBox.Checked;
             s.SnapRotationDegrees = (float)SnapAngleUpDown.Value;
             s.SnapGridSize = (float)SnapGridSizeUpDown.Value;
-            s.TimeOfDay = TimeOfDayTrackBar.Value;
             s.LODLights = LODLightsCheckBox.Checked;
-            s.Weather = WeatherComboBox.Text;
-            s.NatrualAmbientLight = NaturalAmbientLightCheckBox.Checked;
+            s.NaturalAmbientLight = NaturalAmbientLightCheckBox.Checked;
             s.ArtificialAmbientLight = ArtificialAmbientLightCheckBox.Checked;
-            s.Region = WeatherRegionComboBox.Text;
-            s.Clouds = CloudsComboBox.Text;
+            s.SavePosition = SavePositionCheckBox.Checked;
+            s.SaveTimeOfDay = SaveTimeOfDayCheckBox.Checked;
+            if (s.SavePosition)
+            {
+                s.StartPosition = FloatUtil.GetVector3String(camEntity?.Position ?? camera.Position);
+            }
+            if (s.SaveTimeOfDay)
+            {
+                s.TimeOfDay = TimeOfDayTrackBar.Value;
+                s.Weather = WeatherComboBox.Text;
+                s.Region = WeatherRegionComboBox.Text;
+                s.Clouds = CloudsComboBox.Text;
+            }
 
             //additional settings from gamefilecache...
             s.EnableMods = gameFileCache.EnableMods;
             s.DLC = gameFileCache.EnableDlc ? gameFileCache.SelectedDlc : "";
 
             s.Save();
+        }
+        private void ResetSettings()
+        {
+            if (MessageBox.Show("Are you sure you want to reset all settings to their default values?", "Reset All Settings", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+
+            Settings.Default.Reset();
+            LoadSettings();
+
+            if (camEntity != null)
+            {
+                camEntity.Position = FloatUtil.ParseVector3String(Settings.Default.StartPosition);
+                camEntity.Orientation = Quaternion.LookAtLH(Vector3.Zero, Vector3.Up, Vector3.ForwardLH);
+                camera.CurrentRotation = Vector3.Zero;
+                camera.TargetRotation = Vector3.Zero;
+            }
+
+            MessageBox.Show("All settings have been reset to their default values. Please restart CodeWalker.");
         }
 
         private void ShowSettingsForm(string tab = "")
@@ -5055,7 +5255,7 @@ namespace CodeWalker
                 case MapSelectionMode.NavMesh: ProjectForm.NewNavPoly(); break; //.NewNavPoint/.NewNavPortal//how to add points/portals? project window
                 case MapSelectionMode.TrainTrack: ProjectForm.NewTrainNode(); break;
                 case MapSelectionMode.Scenario: ProjectForm.NewScenarioNode(); break; //how to add different node types? project window
-                case MapSelectionMode.Audio: ProjectForm.NewAudioZone(); break; //.NewAudioEmitter // how to add emitters as well? project window
+                case MapSelectionMode.Audio: ProjectForm.NewAudioAmbientZone(); break; //.NewAudioEmitter // how to add emitters as well? project window
             }
         }
         private void CopyItem()
@@ -5113,8 +5313,9 @@ namespace CodeWalker
             else if (item.NavPortal != null) DeleteNavPortal(item.NavPortal);
             else if (item.TrainTrackNode != null) DeleteTrainNode(item.TrainTrackNode);
             else if (item.ScenarioNode != null) DeleteScenarioNode(item.ScenarioNode);
-            else if (item.Audio?.AudioZone != null) DeleteAudioZone(item.Audio);
-            else if (item.Audio?.AudioEmitter != null) DeleteAudioEmitter(item.Audio);
+            else if (item.Audio?.AmbientZone != null) DeleteAudioAmbientZone(item.Audio);
+            else if (item.Audio?.AmbientRule != null) DeleteAudioAmbientRule(item.Audio);
+            else if (item.Audio?.StaticEmitter != null) DeleteAudioStaticEmitter(item.Audio);
         }
         private void DeleteEntity(YmapEntityDef ent)
         {
@@ -5213,16 +5414,27 @@ namespace CodeWalker
         private void DeletePathNode(YndNode pathnode)
         {
             if (pathnode == null) return;
+            if (pathnode.Ynd == null) return;
 
-            //project not open, or cargen not selected there, just remove the cargen from the ymap...
+            //project not open, or node not selected there, just remove the node from the ynd...
             var ynd = pathnode.Ynd;
-            if (!ynd.RemoveNode(pathnode))
+            if (!ynd.RemoveYndNode(Space, pathnode, true, out var affectedFiles))
             {
                 MessageBox.Show("Unable to remove path node.");
             }
             else
             {
                 UpdatePathNodeGraphics(pathnode, false);
+                ProjectForm?.AddYndToProject(ynd);
+
+                foreach (var affectedFile in affectedFiles)
+                {
+                    UpdatePathYndGraphics(affectedFile, false);
+                    ProjectForm?.AddYndToProject(affectedFile);
+                    affectedFile.HasChanged = true;
+                }
+
+
                 SelectItem(null);
             }
         }
@@ -5306,30 +5518,45 @@ namespace CodeWalker
                 SelectItem(null);
             }
         }
-        private void DeleteAudioZone(AudioPlacement audio)
+        private void DeleteAudioAmbientZone(AudioPlacement audio)
         {
             if (audio == null) return;
 
             //project not open, or zone not selected there, just remove the zone from the rel...
             var rel = audio.RelFile;
-            if (!rel.RemoveRelData(audio.AudioZone))
+            if (!rel.RemoveRelData(audio.AmbientZone))
             {
-                MessageBox.Show("Unable to remove audio zone. Audio zone editing TODO!");
+                MessageBox.Show("Unable to remove audio ambient zone.");
             }
             else
             {
                 SelectItem(null);
             }
         }
-        private void DeleteAudioEmitter(AudioPlacement audio)
+        private void DeleteAudioAmbientRule(AudioPlacement audio)
         {
             if (audio == null) return;
 
-            //project not open, or zone not selected there, just remove the zone from the rel...
+            //project not open, or rule not selected there, just remove the rule from the rel...
             var rel = audio.RelFile;
-            if (!rel.RemoveRelData(audio.AudioEmitter))
+            if (!rel.RemoveRelData(audio.AmbientRule))
             {
-                MessageBox.Show("Unable to remove audio emitter. Audio zone editing TODO!");
+                MessageBox.Show("Unable to remove audio ambient rule.");
+            }
+            else
+            {
+                SelectItem(null);
+            }
+        }
+        private void DeleteAudioStaticEmitter(AudioPlacement audio)
+        {
+            if (audio == null) return;
+
+            //project not open, or emitter not selected there, just remove the emitter from the rel...
+            var rel = audio.RelFile;
+            if (!rel.RemoveRelData(audio.StaticEmitter))
+            {
+                MessageBox.Show("Unable to remove audio static emitter.");
             }
             else
             {
@@ -5798,6 +6025,82 @@ namespace CodeWalker
 
 
 
+        private void TryCreateNodeLink()//TODO: move this to project window
+        {
+            if (SelectionMode != MapSelectionMode.Path)
+            {
+                return;
+            }
+
+            var selection = SelectedItem.MultipleSelectionItems;
+            if (selection?.Length != 2)
+            {
+                MessageBox.Show("Please select 2 nodes to perform this action",
+                    "Join Failed.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var n1 = selection[0].PathNode;
+            var n2 = selection[1].PathNode;
+            if (n1 != null && n2 != null)
+            {
+                var link = n1.AddLink(n2);
+                if (link == null)
+                {
+                    MessageBox.Show("Failed to join nodes. The nodes are likely too far away!", "Join Failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var copy = n1.Links.FirstOrDefault();
+
+                link.SetForwardLanesBidirectionally(copy?.LaneCountBackward ?? 1);
+                link.SetBackwardLanesBidirectionally(copy?.LaneCountForward ?? 1);
+                UpdatePathYndGraphics(n1.Ynd, false);
+                UpdatePathYndGraphics(n2.Ynd, false);
+            }
+        }
+
+        private void TryCreateNodeShortcut()//TODO: move this to project window
+        {
+            if (SelectionMode != MapSelectionMode.Path)
+            {
+                return;
+            }
+
+            var selection = SelectedItem.MultipleSelectionItems;
+            if (selection?.Length != 2)
+            {
+                MessageBox.Show("Please select 2 nodes to perform this action",
+                    "Join Failed.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var n1 = selection[0].PathNode;
+            var n2 = selection[1].PathNode;
+            if (n1 != null && n2 != null)
+            {
+                var link = n1.AddLink(n2);
+                if (link == null)
+                {
+                    MessageBox.Show("Failed to join nodes. The nodes are likely too far away!", "Join Failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                link.SetForwardLanesBidirectionally(1);
+                link.Shortcut = true;
+
+                if (n2.TryGetLinkForNode(n1, out var backLink))
+                {
+                    backLink.Shortcut = true;
+                }
+
+                UpdatePathYndGraphics(n1.Ynd, false);
+                UpdatePathYndGraphics(n2.Ynd, false);
+            }
+        }
+
 
 
 
@@ -5823,6 +6126,11 @@ namespace CodeWalker
 
         private void WorldForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+        }
+
+        private void WorldForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveSettings();
         }
 
         private void WorldForm_MouseDown(object sender, MouseEventArgs e)
@@ -6209,6 +6517,17 @@ namespace CodeWalker
                     {
                         DeleteItem();
                     }
+                    if (SelectionMode == MapSelectionMode.Path)
+                    {
+                        if (k == Keys.J)
+                        {
+                            TryCreateNodeLink();
+                        }
+                        if (k == Keys.K)
+                        {
+                            TryCreateNodeShortcut();
+                        }
+                    }
                 }
                 else
                 {
@@ -6455,6 +6774,7 @@ namespace CodeWalker
 
         private void ReloadShadersButton_Click(object sender, EventArgs e)
         {
+            //### NO LONGER USED
             if (Renderer.Device == null) return; //can't do this with no device
 
             Cursor = Cursors.WaitCursor;
@@ -6679,22 +6999,14 @@ namespace CodeWalker
             ShowSettingsForm("Advanced");
         }
 
-        private void ReloadSettingsButton_Click(object sender, EventArgs e)
+        private void ResetSettingsButton_Click(object sender, EventArgs e)
         {
-            LoadSettings();
+            ResetSettings();
         }
 
         private void SaveSettingsButton_Click(object sender, EventArgs e)
         {
             SaveSettings();
-        }
-
-        private void QuitButton_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Really quit?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Close();
-            }
         }
 
         private void AboutButton_Click(object sender, EventArgs e)
