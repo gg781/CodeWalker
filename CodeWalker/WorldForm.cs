@@ -8012,6 +8012,11 @@ namespace CodeWalker
             SubtitleTimer.Enabled = false;
             SubtitleLabel.Visible = false;
         }
+
+        private void SelectedMarkerPositionTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public enum WorldControlMode

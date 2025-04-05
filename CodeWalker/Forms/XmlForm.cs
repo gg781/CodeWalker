@@ -353,5 +353,15 @@ namespace CodeWalker.Forms
         {
             e.Cancel = !CloseDocument();
         }
+
+        private void XmlTextBox_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }

@@ -157,7 +157,8 @@
             // MainSplitContainer
             // 
             this.MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainSplitContainer.Location = new System.Drawing.Point(0, 28);
+            this.MainSplitContainer.Location = new System.Drawing.Point(0, 30);
+            this.MainSplitContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MainSplitContainer.Name = "MainSplitContainer";
             // 
             // MainSplitContainer.Panel1
@@ -167,9 +168,8 @@
             // MainSplitContainer.Panel2
             // 
             this.MainSplitContainer.Panel2.Controls.Add(this.LightPropertiesPanel2);
-            this.MainSplitContainer.Size = new System.Drawing.Size(673, 746);
-            this.MainSplitContainer.SplitterDistance = 169;
-            this.MainSplitContainer.SplitterWidth = 3;
+            this.MainSplitContainer.Size = new System.Drawing.Size(879, 1006);
+            this.MainSplitContainer.SplitterDistance = 220;
             this.MainSplitContainer.TabIndex = 0;
             // 
             // LightPropertiesPanel1
@@ -180,9 +180,10 @@
             this.LightPropertiesPanel1.Controls.Add(this.NewLightButton);
             this.LightPropertiesPanel1.Controls.Add(this.DeleteLightButton);
             this.LightPropertiesPanel1.Controls.Add(this.DuplicateLightButton);
-            this.LightPropertiesPanel1.Location = new System.Drawing.Point(3, 3);
+            this.LightPropertiesPanel1.Location = new System.Drawing.Point(4, 4);
+            this.LightPropertiesPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LightPropertiesPanel1.Name = "LightPropertiesPanel1";
-            this.LightPropertiesPanel1.Size = new System.Drawing.Size(164, 741);
+            this.LightPropertiesPanel1.Size = new System.Drawing.Size(191, 999);
             this.LightPropertiesPanel1.TabIndex = 9;
             // 
             // LightsTreeView
@@ -192,10 +193,11 @@
             this.LightsTreeView.ContextMenuStrip = this.LightMenuStrip;
             this.LightsTreeView.FullRowSelect = true;
             this.LightsTreeView.HideSelection = false;
-            this.LightsTreeView.Location = new System.Drawing.Point(3, 3);
+            this.LightsTreeView.Location = new System.Drawing.Point(4, 4);
+            this.LightsTreeView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LightsTreeView.Name = "LightsTreeView";
             this.LightsTreeView.ShowRootLines = false;
-            this.LightsTreeView.Size = new System.Drawing.Size(158, 677);
+            this.LightsTreeView.Size = new System.Drawing.Size(184, 914);
             this.LightsTreeView.TabIndex = 5;
             this.LightsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.LightsTreeView_AfterSelect);
             // 
@@ -206,28 +208,29 @@
             this.newLightToolStripMenuItem,
             this.deleteLightToolStripMenuItem});
             this.LightMenuStrip.Name = "LightMenuStrip";
-            this.LightMenuStrip.Size = new System.Drawing.Size(138, 48);
+            this.LightMenuStrip.Size = new System.Drawing.Size(142, 48);
             // 
             // newLightToolStripMenuItem
             // 
             this.newLightToolStripMenuItem.Name = "newLightToolStripMenuItem";
-            this.newLightToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.newLightToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.newLightToolStripMenuItem.Text = "New Light";
             this.newLightToolStripMenuItem.Click += new System.EventHandler(this.newLightToolStripMenuItem_Click);
             // 
             // deleteLightToolStripMenuItem
             // 
             this.deleteLightToolStripMenuItem.Name = "deleteLightToolStripMenuItem";
-            this.deleteLightToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.deleteLightToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.deleteLightToolStripMenuItem.Text = "Delete Light";
             this.deleteLightToolStripMenuItem.Click += new System.EventHandler(this.deleteLightToolStripMenuItem_Click);
             // 
             // NewLightButton
             // 
             this.NewLightButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.NewLightButton.Location = new System.Drawing.Point(3, 686);
+            this.NewLightButton.Location = new System.Drawing.Point(4, 927);
+            this.NewLightButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NewLightButton.Name = "NewLightButton";
-            this.NewLightButton.Size = new System.Drawing.Size(75, 23);
+            this.NewLightButton.Size = new System.Drawing.Size(88, 30);
             this.NewLightButton.TabIndex = 6;
             this.NewLightButton.Text = "New Light";
             this.NewLightButton.UseVisualStyleBackColor = true;
@@ -237,9 +240,10 @@
             // 
             this.DeleteLightButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DeleteLightButton.Enabled = false;
-            this.DeleteLightButton.Location = new System.Drawing.Point(86, 686);
+            this.DeleteLightButton.Location = new System.Drawing.Point(100, 927);
+            this.DeleteLightButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DeleteLightButton.Name = "DeleteLightButton";
-            this.DeleteLightButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteLightButton.Size = new System.Drawing.Size(88, 30);
             this.DeleteLightButton.TabIndex = 7;
             this.DeleteLightButton.Text = "Delete Light";
             this.DeleteLightButton.UseVisualStyleBackColor = true;
@@ -248,9 +252,10 @@
             // DuplicateLightButton
             // 
             this.DuplicateLightButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DuplicateLightButton.Location = new System.Drawing.Point(3, 718);
+            this.DuplicateLightButton.Location = new System.Drawing.Point(4, 969);
+            this.DuplicateLightButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DuplicateLightButton.Name = "DuplicateLightButton";
-            this.DuplicateLightButton.Size = new System.Drawing.Size(158, 23);
+            this.DuplicateLightButton.Size = new System.Drawing.Size(184, 30);
             this.DuplicateLightButton.TabIndex = 8;
             this.DuplicateLightButton.Text = "Duplicate Light";
             this.DuplicateLightButton.UseVisualStyleBackColor = true;
@@ -342,17 +347,19 @@
             this.LightPropertiesPanel2.Controls.Add(this.FlagsLabel);
             this.LightPropertiesPanel2.Controls.Add(this.FlagsTextBox);
             this.LightPropertiesPanel2.Controls.Add(this.FlagsCheckedListBox);
-            this.LightPropertiesPanel2.Location = new System.Drawing.Point(3, 3);
+            this.LightPropertiesPanel2.Location = new System.Drawing.Point(4, 4);
+            this.LightPropertiesPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LightPropertiesPanel2.Name = "LightPropertiesPanel2";
-            this.LightPropertiesPanel2.Size = new System.Drawing.Size(495, 741);
+            this.LightPropertiesPanel2.Size = new System.Drawing.Size(650, 999);
             this.LightPropertiesPanel2.TabIndex = 1;
             // 
             // PositionLabel
             // 
             this.PositionLabel.AutoSize = true;
-            this.PositionLabel.Location = new System.Drawing.Point(3, 5);
+            this.PositionLabel.Location = new System.Drawing.Point(4, 7);
+            this.PositionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PositionLabel.Name = "PositionLabel";
-            this.PositionLabel.Size = new System.Drawing.Size(47, 13);
+            this.PositionLabel.Size = new System.Drawing.Size(57, 17);
             this.PositionLabel.TabIndex = 100;
             this.PositionLabel.Text = "Position:";
             // 
@@ -360,18 +367,20 @@
             // 
             this.PositionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PositionTextBox.Location = new System.Drawing.Point(88, 2);
+            this.PositionTextBox.Location = new System.Drawing.Point(103, 3);
+            this.PositionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PositionTextBox.Name = "PositionTextBox";
-            this.PositionTextBox.Size = new System.Drawing.Size(339, 20);
+            this.PositionTextBox.Size = new System.Drawing.Size(467, 23);
             this.PositionTextBox.TabIndex = 101;
             this.PositionTextBox.TextChanged += new System.EventHandler(this.PositionTextBox_TextChanged);
             // 
             // GoToButton
             // 
             this.GoToButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.GoToButton.Location = new System.Drawing.Point(429, 0);
+            this.GoToButton.Location = new System.Drawing.Point(573, 0);
+            this.GoToButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GoToButton.Name = "GoToButton";
-            this.GoToButton.Size = new System.Drawing.Size(63, 23);
+            this.GoToButton.Size = new System.Drawing.Size(74, 30);
             this.GoToButton.TabIndex = 102;
             this.GoToButton.Text = "Go to";
             this.GoToButton.UseVisualStyleBackColor = true;
@@ -380,9 +389,10 @@
             // DirectionLabel
             // 
             this.DirectionLabel.AutoSize = true;
-            this.DirectionLabel.Location = new System.Drawing.Point(3, 28);
+            this.DirectionLabel.Location = new System.Drawing.Point(4, 37);
+            this.DirectionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DirectionLabel.Name = "DirectionLabel";
-            this.DirectionLabel.Size = new System.Drawing.Size(52, 13);
+            this.DirectionLabel.Size = new System.Drawing.Size(63, 17);
             this.DirectionLabel.TabIndex = 111;
             this.DirectionLabel.Text = "Direction:";
             // 
@@ -390,18 +400,20 @@
             // 
             this.DirectionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DirectionTextBox.Location = new System.Drawing.Point(88, 26);
+            this.DirectionTextBox.Location = new System.Drawing.Point(103, 34);
+            this.DirectionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DirectionTextBox.Name = "DirectionTextBox";
-            this.DirectionTextBox.Size = new System.Drawing.Size(274, 20);
+            this.DirectionTextBox.Size = new System.Drawing.Size(391, 23);
             this.DirectionTextBox.TabIndex = 112;
             this.DirectionTextBox.TextChanged += new System.EventHandler(this.DirectionTextBox_TextChanged);
             // 
             // ResetDirectionButton
             // 
             this.ResetDirectionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetDirectionButton.Location = new System.Drawing.Point(429, 24);
+            this.ResetDirectionButton.Location = new System.Drawing.Point(573, 31);
+            this.ResetDirectionButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ResetDirectionButton.Name = "ResetDirectionButton";
-            this.ResetDirectionButton.Size = new System.Drawing.Size(63, 23);
+            this.ResetDirectionButton.Size = new System.Drawing.Size(74, 30);
             this.ResetDirectionButton.TabIndex = 113;
             this.ResetDirectionButton.Text = "Reset";
             this.ResetDirectionButton.UseVisualStyleBackColor = true;
@@ -410,9 +422,10 @@
             // NormalizeDirectionButton
             // 
             this.NormalizeDirectionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NormalizeDirectionButton.Location = new System.Drawing.Point(363, 24);
+            this.NormalizeDirectionButton.Location = new System.Drawing.Point(496, 31);
+            this.NormalizeDirectionButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NormalizeDirectionButton.Name = "NormalizeDirectionButton";
-            this.NormalizeDirectionButton.Size = new System.Drawing.Size(63, 23);
+            this.NormalizeDirectionButton.Size = new System.Drawing.Size(74, 30);
             this.NormalizeDirectionButton.TabIndex = 113;
             this.NormalizeDirectionButton.Text = "Normalize";
             this.NormalizeDirectionButton.UseVisualStyleBackColor = true;
@@ -421,9 +434,10 @@
             // TangentLabel
             // 
             this.TangentLabel.AutoSize = true;
-            this.TangentLabel.Location = new System.Drawing.Point(3, 52);
+            this.TangentLabel.Location = new System.Drawing.Point(4, 68);
+            this.TangentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TangentLabel.Name = "TangentLabel";
-            this.TangentLabel.Size = new System.Drawing.Size(50, 13);
+            this.TangentLabel.Size = new System.Drawing.Size(58, 17);
             this.TangentLabel.TabIndex = 121;
             this.TangentLabel.Text = "Tangent:";
             // 
@@ -431,18 +445,20 @@
             // 
             this.TangentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TangentTextBox.Location = new System.Drawing.Point(88, 50);
+            this.TangentTextBox.Location = new System.Drawing.Point(103, 65);
+            this.TangentTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TangentTextBox.Name = "TangentTextBox";
-            this.TangentTextBox.Size = new System.Drawing.Size(274, 20);
+            this.TangentTextBox.Size = new System.Drawing.Size(391, 23);
             this.TangentTextBox.TabIndex = 122;
             this.TangentTextBox.TextChanged += new System.EventHandler(this.TangentTextBox_TextChanged);
             // 
             // CalculateTangentButton
             // 
             this.CalculateTangentButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CalculateTangentButton.Location = new System.Drawing.Point(429, 47);
+            this.CalculateTangentButton.Location = new System.Drawing.Point(573, 61);
+            this.CalculateTangentButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CalculateTangentButton.Name = "CalculateTangentButton";
-            this.CalculateTangentButton.Size = new System.Drawing.Size(63, 23);
+            this.CalculateTangentButton.Size = new System.Drawing.Size(74, 30);
             this.CalculateTangentButton.TabIndex = 123;
             this.CalculateTangentButton.Text = "Calculate";
             this.CalculateTangentButton.UseVisualStyleBackColor = true;
@@ -451,9 +467,10 @@
             // NormalizeTangentButton
             // 
             this.NormalizeTangentButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NormalizeTangentButton.Location = new System.Drawing.Point(363, 47);
+            this.NormalizeTangentButton.Location = new System.Drawing.Point(496, 61);
+            this.NormalizeTangentButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NormalizeTangentButton.Name = "NormalizeTangentButton";
-            this.NormalizeTangentButton.Size = new System.Drawing.Size(63, 23);
+            this.NormalizeTangentButton.Size = new System.Drawing.Size(74, 30);
             this.NormalizeTangentButton.TabIndex = 123;
             this.NormalizeTangentButton.Text = "Normalize";
             this.NormalizeTangentButton.UseVisualStyleBackColor = true;
@@ -462,9 +479,10 @@
             // TypeLabel
             // 
             this.TypeLabel.AutoSize = true;
-            this.TypeLabel.Location = new System.Drawing.Point(3, 76);
+            this.TypeLabel.Location = new System.Drawing.Point(4, 99);
+            this.TypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TypeLabel.Name = "TypeLabel";
-            this.TypeLabel.Size = new System.Drawing.Size(34, 13);
+            this.TypeLabel.Size = new System.Drawing.Size(39, 17);
             this.TypeLabel.TabIndex = 131;
             this.TypeLabel.Text = "Type:";
             // 
@@ -476,18 +494,20 @@
             "Point",
             "Spot",
             "Capsule"});
-            this.TypeComboBox.Location = new System.Drawing.Point(113, 73);
+            this.TypeComboBox.Location = new System.Drawing.Point(132, 95);
+            this.TypeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TypeComboBox.Name = "TypeComboBox";
-            this.TypeComboBox.Size = new System.Drawing.Size(166, 21);
+            this.TypeComboBox.Size = new System.Drawing.Size(193, 25);
             this.TypeComboBox.TabIndex = 132;
             this.TypeComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeComboBox_SelectedIndexChanged);
             // 
             // ColourRGBLabel
             // 
             this.ColourRGBLabel.AutoSize = true;
-            this.ColourRGBLabel.Location = new System.Drawing.Point(3, 101);
+            this.ColourRGBLabel.Location = new System.Drawing.Point(4, 132);
+            this.ColourRGBLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ColourRGBLabel.Name = "ColourRGBLabel";
-            this.ColourRGBLabel.Size = new System.Drawing.Size(72, 13);
+            this.ColourRGBLabel.Size = new System.Drawing.Size(87, 17);
             this.ColourRGBLabel.TabIndex = 141;
             this.ColourRGBLabel.Text = "Colour (RGB):";
             // 
@@ -495,22 +515,24 @@
             // 
             this.ColourLabel.BackColor = System.Drawing.Color.White;
             this.ColourLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ColourLabel.Location = new System.Drawing.Point(113, 98);
+            this.ColourLabel.Location = new System.Drawing.Point(132, 128);
+            this.ColourLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ColourLabel.Name = "ColourLabel";
-            this.ColourLabel.Size = new System.Drawing.Size(30, 20);
+            this.ColourLabel.Size = new System.Drawing.Size(35, 26);
             this.ColourLabel.TabIndex = 142;
             this.ColourLabel.Click += new System.EventHandler(this.ColourLabel_Click);
             // 
             // ColourRUpDown
             // 
-            this.ColourRUpDown.Location = new System.Drawing.Point(149, 98);
+            this.ColourRUpDown.Location = new System.Drawing.Point(174, 128);
+            this.ColourRUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ColourRUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.ColourRUpDown.Name = "ColourRUpDown";
-            this.ColourRUpDown.Size = new System.Drawing.Size(38, 20);
+            this.ColourRUpDown.Size = new System.Drawing.Size(44, 23);
             this.ColourRUpDown.TabIndex = 143;
             this.ColourRUpDown.Value = new decimal(new int[] {
             255,
@@ -521,14 +543,15 @@
             // 
             // ColourGUpDown
             // 
-            this.ColourGUpDown.Location = new System.Drawing.Point(194, 98);
+            this.ColourGUpDown.Location = new System.Drawing.Point(226, 128);
+            this.ColourGUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ColourGUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.ColourGUpDown.Name = "ColourGUpDown";
-            this.ColourGUpDown.Size = new System.Drawing.Size(38, 20);
+            this.ColourGUpDown.Size = new System.Drawing.Size(44, 23);
             this.ColourGUpDown.TabIndex = 144;
             this.ColourGUpDown.Value = new decimal(new int[] {
             255,
@@ -539,14 +562,15 @@
             // 
             // ColourBUpDown
             // 
-            this.ColourBUpDown.Location = new System.Drawing.Point(239, 98);
+            this.ColourBUpDown.Location = new System.Drawing.Point(279, 128);
+            this.ColourBUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ColourBUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.ColourBUpDown.Name = "ColourBUpDown";
-            this.ColourBUpDown.Size = new System.Drawing.Size(38, 20);
+            this.ColourBUpDown.Size = new System.Drawing.Size(44, 23);
             this.ColourBUpDown.TabIndex = 145;
             this.ColourBUpDown.Value = new decimal(new int[] {
             255,
@@ -558,26 +582,29 @@
             // IntensityLabel
             // 
             this.IntensityLabel.AutoSize = true;
-            this.IntensityLabel.Location = new System.Drawing.Point(3, 124);
+            this.IntensityLabel.Location = new System.Drawing.Point(4, 162);
+            this.IntensityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.IntensityLabel.Name = "IntensityLabel";
-            this.IntensityLabel.Size = new System.Drawing.Size(49, 13);
+            this.IntensityLabel.Size = new System.Drawing.Size(59, 17);
             this.IntensityLabel.TabIndex = 151;
             this.IntensityLabel.Text = "Intensity:";
             // 
             // IntensityTextBox
             // 
-            this.IntensityTextBox.Location = new System.Drawing.Point(113, 122);
+            this.IntensityTextBox.Location = new System.Drawing.Point(132, 160);
+            this.IntensityTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.IntensityTextBox.Name = "IntensityTextBox";
-            this.IntensityTextBox.Size = new System.Drawing.Size(166, 20);
+            this.IntensityTextBox.Size = new System.Drawing.Size(193, 23);
             this.IntensityTextBox.TabIndex = 152;
             this.IntensityTextBox.TextChanged += new System.EventHandler(this.IntensityTextBox_TextChanged);
             // 
             // FlashinessLabel
             // 
             this.FlashinessLabel.AutoSize = true;
-            this.FlashinessLabel.Location = new System.Drawing.Point(3, 149);
+            this.FlashinessLabel.Location = new System.Drawing.Point(4, 195);
+            this.FlashinessLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.FlashinessLabel.Name = "FlashinessLabel";
-            this.FlashinessLabel.Size = new System.Drawing.Size(59, 13);
+            this.FlashinessLabel.Size = new System.Drawing.Size(69, 17);
             this.FlashinessLabel.TabIndex = 171;
             this.FlashinessLabel.Text = "Flashiness:";
             // 
@@ -608,31 +635,34 @@
             "19 - Electric",
             "20 - Strobe",
             "21 - Count"});
-            this.FlashinessComboBox.Location = new System.Drawing.Point(113, 145);
+            this.FlashinessComboBox.Location = new System.Drawing.Point(132, 190);
+            this.FlashinessComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FlashinessComboBox.Name = "FlashinessComboBox";
-            this.FlashinessComboBox.Size = new System.Drawing.Size(166, 21);
+            this.FlashinessComboBox.Size = new System.Drawing.Size(193, 25);
             this.FlashinessComboBox.TabIndex = 172;
             this.FlashinessComboBox.SelectedIndexChanged += new System.EventHandler(this.FlashinessComboBox_SelectedIndexChanged);
             // 
             // LightHashLabel
             // 
             this.LightHashLabel.AutoSize = true;
-            this.LightHashLabel.Location = new System.Drawing.Point(3, 173);
+            this.LightHashLabel.Location = new System.Drawing.Point(4, 226);
+            this.LightHashLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LightHashLabel.Name = "LightHashLabel";
-            this.LightHashLabel.Size = new System.Drawing.Size(58, 13);
+            this.LightHashLabel.Size = new System.Drawing.Size(68, 17);
             this.LightHashLabel.TabIndex = 301;
             this.LightHashLabel.Text = "LightHash:";
             // 
             // LightHashUpDown
             // 
-            this.LightHashUpDown.Location = new System.Drawing.Point(113, 171);
+            this.LightHashUpDown.Location = new System.Drawing.Point(132, 224);
+            this.LightHashUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LightHashUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.LightHashUpDown.Name = "LightHashUpDown";
-            this.LightHashUpDown.Size = new System.Drawing.Size(165, 20);
+            this.LightHashUpDown.Size = new System.Drawing.Size(192, 23);
             this.LightHashUpDown.TabIndex = 152;
             this.LightHashUpDown.Value = new decimal(new int[] {
             255,
@@ -644,22 +674,24 @@
             // BoneIDLabel
             // 
             this.BoneIDLabel.AutoSize = true;
-            this.BoneIDLabel.Location = new System.Drawing.Point(3, 197);
+            this.BoneIDLabel.Location = new System.Drawing.Point(4, 258);
+            this.BoneIDLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BoneIDLabel.Name = "BoneIDLabel";
-            this.BoneIDLabel.Size = new System.Drawing.Size(49, 13);
+            this.BoneIDLabel.Size = new System.Drawing.Size(58, 17);
             this.BoneIDLabel.TabIndex = 181;
             this.BoneIDLabel.Text = "Bone ID:";
             // 
             // BoneIDUpDown
             // 
-            this.BoneIDUpDown.Location = new System.Drawing.Point(113, 194);
+            this.BoneIDUpDown.Location = new System.Drawing.Point(132, 254);
+            this.BoneIDUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BoneIDUpDown.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
             this.BoneIDUpDown.Name = "BoneIDUpDown";
-            this.BoneIDUpDown.Size = new System.Drawing.Size(165, 20);
+            this.BoneIDUpDown.Size = new System.Drawing.Size(192, 23);
             this.BoneIDUpDown.TabIndex = 182;
             this.BoneIDUpDown.Value = new decimal(new int[] {
             65535,
@@ -671,22 +703,24 @@
             // GroupIDLabel
             // 
             this.GroupIDLabel.AutoSize = true;
-            this.GroupIDLabel.Location = new System.Drawing.Point(3, 220);
+            this.GroupIDLabel.Location = new System.Drawing.Point(4, 288);
+            this.GroupIDLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.GroupIDLabel.Name = "GroupIDLabel";
-            this.GroupIDLabel.Size = new System.Drawing.Size(53, 13);
+            this.GroupIDLabel.Size = new System.Drawing.Size(65, 17);
             this.GroupIDLabel.TabIndex = 191;
             this.GroupIDLabel.Text = "Group ID:";
             // 
             // GroupIDUpDown
             // 
-            this.GroupIDUpDown.Location = new System.Drawing.Point(113, 218);
+            this.GroupIDUpDown.Location = new System.Drawing.Point(132, 285);
+            this.GroupIDUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GroupIDUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.GroupIDUpDown.Name = "GroupIDUpDown";
-            this.GroupIDUpDown.Size = new System.Drawing.Size(165, 20);
+            this.GroupIDUpDown.Size = new System.Drawing.Size(192, 23);
             this.GroupIDUpDown.TabIndex = 192;
             this.GroupIDUpDown.Value = new decimal(new int[] {
             255,
@@ -698,192 +732,214 @@
             // FallofLabel
             // 
             this.FallofLabel.AutoSize = true;
-            this.FallofLabel.Location = new System.Drawing.Point(3, 244);
+            this.FallofLabel.Location = new System.Drawing.Point(4, 319);
+            this.FallofLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.FallofLabel.Name = "FallofLabel";
-            this.FallofLabel.Size = new System.Drawing.Size(38, 13);
+            this.FallofLabel.Size = new System.Drawing.Size(46, 17);
             this.FallofLabel.TabIndex = 201;
             this.FallofLabel.Text = "Falloff:";
             // 
             // FalloffTextBox
             // 
-            this.FalloffTextBox.Location = new System.Drawing.Point(113, 241);
+            this.FalloffTextBox.Location = new System.Drawing.Point(132, 315);
+            this.FalloffTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FalloffTextBox.Name = "FalloffTextBox";
-            this.FalloffTextBox.Size = new System.Drawing.Size(166, 20);
+            this.FalloffTextBox.Size = new System.Drawing.Size(193, 23);
             this.FalloffTextBox.TabIndex = 202;
             this.FalloffTextBox.TextChanged += new System.EventHandler(this.FalloffTextBox_TextChanged);
             // 
             // FalloffExponentLabel
             // 
             this.FalloffExponentLabel.AutoSize = true;
-            this.FalloffExponentLabel.Location = new System.Drawing.Point(3, 267);
+            this.FalloffExponentLabel.Location = new System.Drawing.Point(4, 349);
+            this.FalloffExponentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.FalloffExponentLabel.Name = "FalloffExponentLabel";
-            this.FalloffExponentLabel.Size = new System.Drawing.Size(58, 13);
+            this.FalloffExponentLabel.Size = new System.Drawing.Size(71, 17);
             this.FalloffExponentLabel.TabIndex = 211;
             this.FalloffExponentLabel.Text = "Falloff exp:";
             // 
             // FalloffExponentTextBox
             // 
-            this.FalloffExponentTextBox.Location = new System.Drawing.Point(113, 265);
+            this.FalloffExponentTextBox.Location = new System.Drawing.Point(132, 347);
+            this.FalloffExponentTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FalloffExponentTextBox.Name = "FalloffExponentTextBox";
-            this.FalloffExponentTextBox.Size = new System.Drawing.Size(166, 20);
+            this.FalloffExponentTextBox.Size = new System.Drawing.Size(193, 23);
             this.FalloffExponentTextBox.TabIndex = 212;
             this.FalloffExponentTextBox.TextChanged += new System.EventHandler(this.FalloffExponentTextBox_TextChanged);
             // 
             // InnerAngleLabel
             // 
             this.InnerAngleLabel.AutoSize = true;
-            this.InnerAngleLabel.Location = new System.Drawing.Point(3, 291);
+            this.InnerAngleLabel.Location = new System.Drawing.Point(4, 381);
+            this.InnerAngleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.InnerAngleLabel.Name = "InnerAngleLabel";
-            this.InnerAngleLabel.Size = new System.Drawing.Size(63, 13);
+            this.InnerAngleLabel.Size = new System.Drawing.Size(77, 17);
             this.InnerAngleLabel.TabIndex = 221;
             this.InnerAngleLabel.Text = "Inner angle:";
             // 
             // InnerAngleTextBox
             // 
-            this.InnerAngleTextBox.Location = new System.Drawing.Point(113, 288);
+            this.InnerAngleTextBox.Location = new System.Drawing.Point(132, 377);
+            this.InnerAngleTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.InnerAngleTextBox.Name = "InnerAngleTextBox";
-            this.InnerAngleTextBox.Size = new System.Drawing.Size(166, 20);
+            this.InnerAngleTextBox.Size = new System.Drawing.Size(193, 23);
             this.InnerAngleTextBox.TabIndex = 222;
             this.InnerAngleTextBox.TextChanged += new System.EventHandler(this.InnerAngleTextBox_TextChanged);
             // 
             // OuterAngleLabel
             // 
             this.OuterAngleLabel.AutoSize = true;
-            this.OuterAngleLabel.Location = new System.Drawing.Point(3, 314);
+            this.OuterAngleLabel.Location = new System.Drawing.Point(4, 411);
+            this.OuterAngleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OuterAngleLabel.Name = "OuterAngleLabel";
-            this.OuterAngleLabel.Size = new System.Drawing.Size(65, 13);
+            this.OuterAngleLabel.Size = new System.Drawing.Size(80, 17);
             this.OuterAngleLabel.TabIndex = 231;
             this.OuterAngleLabel.Text = "Outer angle:";
             // 
             // OuterAngleTextBox
             // 
-            this.OuterAngleTextBox.Location = new System.Drawing.Point(113, 312);
+            this.OuterAngleTextBox.Location = new System.Drawing.Point(132, 408);
+            this.OuterAngleTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OuterAngleTextBox.Name = "OuterAngleTextBox";
-            this.OuterAngleTextBox.Size = new System.Drawing.Size(166, 20);
+            this.OuterAngleTextBox.Size = new System.Drawing.Size(193, 23);
             this.OuterAngleTextBox.TabIndex = 232;
             this.OuterAngleTextBox.TextChanged += new System.EventHandler(this.OuterAngleTextBox_TextChanged);
             // 
             // ExtentLabel
             // 
             this.ExtentLabel.AutoSize = true;
-            this.ExtentLabel.Location = new System.Drawing.Point(3, 338);
+            this.ExtentLabel.Location = new System.Drawing.Point(4, 442);
+            this.ExtentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ExtentLabel.Name = "ExtentLabel";
-            this.ExtentLabel.Size = new System.Drawing.Size(40, 13);
+            this.ExtentLabel.Size = new System.Drawing.Size(46, 17);
             this.ExtentLabel.TabIndex = 261;
             this.ExtentLabel.Text = "Extent:";
             // 
             // ExtentTextBox
             // 
-            this.ExtentTextBox.Location = new System.Drawing.Point(113, 336);
+            this.ExtentTextBox.Location = new System.Drawing.Point(132, 439);
+            this.ExtentTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ExtentTextBox.Name = "ExtentTextBox";
-            this.ExtentTextBox.Size = new System.Drawing.Size(166, 20);
+            this.ExtentTextBox.Size = new System.Drawing.Size(193, 23);
             this.ExtentTextBox.TabIndex = 262;
             this.ExtentTextBox.TextChanged += new System.EventHandler(this.ExtentTextBox_TextChanged);
             // 
             // TextureHashLabel
             // 
             this.TextureHashLabel.AutoSize = true;
-            this.TextureHashLabel.Location = new System.Drawing.Point(3, 362);
+            this.TextureHashLabel.Location = new System.Drawing.Point(4, 473);
+            this.TextureHashLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TextureHashLabel.Name = "TextureHashLabel";
-            this.TextureHashLabel.Size = new System.Drawing.Size(72, 13);
+            this.TextureHashLabel.Size = new System.Drawing.Size(85, 17);
             this.TextureHashLabel.TabIndex = 301;
             this.TextureHashLabel.Text = "Texture hash:";
             // 
             // TextureHashTextBox
             // 
-            this.TextureHashTextBox.Location = new System.Drawing.Point(113, 359);
+            this.TextureHashTextBox.Location = new System.Drawing.Point(132, 469);
+            this.TextureHashTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextureHashTextBox.Name = "TextureHashTextBox";
-            this.TextureHashTextBox.Size = new System.Drawing.Size(166, 20);
+            this.TextureHashTextBox.Size = new System.Drawing.Size(193, 23);
             this.TextureHashTextBox.TabIndex = 302;
             this.TextureHashTextBox.TextChanged += new System.EventHandler(this.TextureHashTextBox_TextChanged);
             // 
             // CoronaSizeLabel
             // 
             this.CoronaSizeLabel.AutoSize = true;
-            this.CoronaSizeLabel.Location = new System.Drawing.Point(3, 385);
+            this.CoronaSizeLabel.Location = new System.Drawing.Point(4, 503);
+            this.CoronaSizeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CoronaSizeLabel.Name = "CoronaSizeLabel";
-            this.CoronaSizeLabel.Size = new System.Drawing.Size(65, 13);
+            this.CoronaSizeLabel.Size = new System.Drawing.Size(80, 17);
             this.CoronaSizeLabel.TabIndex = 241;
             this.CoronaSizeLabel.Text = "Corona size:";
             // 
             // CoronaSizeTextBox
             // 
-            this.CoronaSizeTextBox.Location = new System.Drawing.Point(113, 383);
+            this.CoronaSizeTextBox.Location = new System.Drawing.Point(132, 501);
+            this.CoronaSizeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CoronaSizeTextBox.Name = "CoronaSizeTextBox";
-            this.CoronaSizeTextBox.Size = new System.Drawing.Size(166, 20);
+            this.CoronaSizeTextBox.Size = new System.Drawing.Size(193, 23);
             this.CoronaSizeTextBox.TabIndex = 242;
             this.CoronaSizeTextBox.TextChanged += new System.EventHandler(this.CoronaSizeTextBox_TextChanged);
             // 
             // CoronaIntensityLabel
             // 
             this.CoronaIntensityLabel.AutoSize = true;
-            this.CoronaIntensityLabel.Location = new System.Drawing.Point(3, 409);
+            this.CoronaIntensityLabel.Location = new System.Drawing.Point(4, 535);
+            this.CoronaIntensityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CoronaIntensityLabel.Name = "CoronaIntensityLabel";
-            this.CoronaIntensityLabel.Size = new System.Drawing.Size(85, 13);
+            this.CoronaIntensityLabel.Size = new System.Drawing.Size(105, 17);
             this.CoronaIntensityLabel.TabIndex = 251;
             this.CoronaIntensityLabel.Text = "Corona intensity:";
             // 
             // CoronaIntensityTextBox
             // 
-            this.CoronaIntensityTextBox.Location = new System.Drawing.Point(113, 406);
+            this.CoronaIntensityTextBox.Location = new System.Drawing.Point(132, 531);
+            this.CoronaIntensityTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CoronaIntensityTextBox.Name = "CoronaIntensityTextBox";
-            this.CoronaIntensityTextBox.Size = new System.Drawing.Size(166, 20);
+            this.CoronaIntensityTextBox.Size = new System.Drawing.Size(193, 23);
             this.CoronaIntensityTextBox.TabIndex = 252;
             this.CoronaIntensityTextBox.TextChanged += new System.EventHandler(this.CoronaIntensityTextBox_TextChanged);
             // 
             // CoronaZBiasLabel
             // 
             this.CoronaZBiasLabel.AutoSize = true;
-            this.CoronaZBiasLabel.Location = new System.Drawing.Point(3, 432);
+            this.CoronaZBiasLabel.Location = new System.Drawing.Point(4, 565);
+            this.CoronaZBiasLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CoronaZBiasLabel.Name = "CoronaZBiasLabel";
-            this.CoronaZBiasLabel.Size = new System.Drawing.Size(71, 13);
+            this.CoronaZBiasLabel.Size = new System.Drawing.Size(88, 17);
             this.CoronaZBiasLabel.TabIndex = 291;
             this.CoronaZBiasLabel.Text = "Corona zbias:";
             // 
             // CoronaZBiasTextBox
             // 
-            this.CoronaZBiasTextBox.Location = new System.Drawing.Point(113, 430);
+            this.CoronaZBiasTextBox.Location = new System.Drawing.Point(132, 562);
+            this.CoronaZBiasTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CoronaZBiasTextBox.Name = "CoronaZBiasTextBox";
-            this.CoronaZBiasTextBox.Size = new System.Drawing.Size(166, 20);
+            this.CoronaZBiasTextBox.Size = new System.Drawing.Size(193, 23);
             this.CoronaZBiasTextBox.TabIndex = 292;
             this.CoronaZBiasTextBox.TextChanged += new System.EventHandler(this.CoronaZBiasTextBox_TextChanged);
             // 
             // ShadowNearClipLabel
             // 
             this.ShadowNearClipLabel.AutoSize = true;
-            this.ShadowNearClipLabel.Location = new System.Drawing.Point(3, 456);
+            this.ShadowNearClipLabel.Location = new System.Drawing.Point(4, 596);
+            this.ShadowNearClipLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ShadowNearClipLabel.Name = "ShadowNearClipLabel";
-            this.ShadowNearClipLabel.Size = new System.Drawing.Size(92, 13);
+            this.ShadowNearClipLabel.Size = new System.Drawing.Size(111, 17);
             this.ShadowNearClipLabel.TabIndex = 381;
             this.ShadowNearClipLabel.Text = "Shadow near clip:";
             // 
             // ShadowNearClipTextBox
             // 
-            this.ShadowNearClipTextBox.Location = new System.Drawing.Point(113, 453);
+            this.ShadowNearClipTextBox.Location = new System.Drawing.Point(132, 592);
+            this.ShadowNearClipTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ShadowNearClipTextBox.Name = "ShadowNearClipTextBox";
-            this.ShadowNearClipTextBox.Size = new System.Drawing.Size(166, 20);
+            this.ShadowNearClipTextBox.Size = new System.Drawing.Size(193, 23);
             this.ShadowNearClipTextBox.TabIndex = 382;
             this.ShadowNearClipTextBox.TextChanged += new System.EventHandler(this.ShadowNearClipTextBox_TextChanged);
             // 
             // ShadowBlurLabel
             // 
             this.ShadowBlurLabel.AutoSize = true;
-            this.ShadowBlurLabel.Location = new System.Drawing.Point(3, 479);
+            this.ShadowBlurLabel.Location = new System.Drawing.Point(4, 626);
+            this.ShadowBlurLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ShadowBlurLabel.Name = "ShadowBlurLabel";
-            this.ShadowBlurLabel.Size = new System.Drawing.Size(69, 13);
+            this.ShadowBlurLabel.Size = new System.Drawing.Size(84, 17);
             this.ShadowBlurLabel.TabIndex = 271;
             this.ShadowBlurLabel.Text = "Shadow blur:";
             // 
             // ShadowBlurUpDown
             // 
-            this.ShadowBlurUpDown.Location = new System.Drawing.Point(113, 477);
+            this.ShadowBlurUpDown.Location = new System.Drawing.Point(132, 624);
+            this.ShadowBlurUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ShadowBlurUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.ShadowBlurUpDown.Name = "ShadowBlurUpDown";
-            this.ShadowBlurUpDown.Size = new System.Drawing.Size(165, 20);
+            this.ShadowBlurUpDown.Size = new System.Drawing.Size(192, 23);
             this.ShadowBlurUpDown.TabIndex = 272;
             this.ShadowBlurUpDown.Value = new decimal(new int[] {
             255,
@@ -895,22 +951,24 @@
             // ShadowFadeDistanceLabel
             // 
             this.ShadowFadeDistanceLabel.AutoSize = true;
-            this.ShadowFadeDistanceLabel.Location = new System.Drawing.Point(3, 503);
+            this.ShadowFadeDistanceLabel.Location = new System.Drawing.Point(4, 658);
+            this.ShadowFadeDistanceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ShadowFadeDistanceLabel.Name = "ShadowFadeDistanceLabel";
-            this.ShadowFadeDistanceLabel.Size = new System.Drawing.Size(90, 13);
+            this.ShadowFadeDistanceLabel.Size = new System.Drawing.Size(109, 17);
             this.ShadowFadeDistanceLabel.TabIndex = 351;
             this.ShadowFadeDistanceLabel.Text = "Shadow fade dst:";
             // 
             // ShadowFadeDistanceUpDown
             // 
-            this.ShadowFadeDistanceUpDown.Location = new System.Drawing.Point(113, 500);
+            this.ShadowFadeDistanceUpDown.Location = new System.Drawing.Point(132, 654);
+            this.ShadowFadeDistanceUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ShadowFadeDistanceUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.ShadowFadeDistanceUpDown.Name = "ShadowFadeDistanceUpDown";
-            this.ShadowFadeDistanceUpDown.Size = new System.Drawing.Size(165, 20);
+            this.ShadowFadeDistanceUpDown.Size = new System.Drawing.Size(192, 23);
             this.ShadowFadeDistanceUpDown.TabIndex = 352;
             this.ShadowFadeDistanceUpDown.Value = new decimal(new int[] {
             255,
@@ -922,22 +980,24 @@
             // LightFadeDistanceLabel
             // 
             this.LightFadeDistanceLabel.AutoSize = true;
-            this.LightFadeDistanceLabel.Location = new System.Drawing.Point(3, 526);
+            this.LightFadeDistanceLabel.Location = new System.Drawing.Point(4, 688);
+            this.LightFadeDistanceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LightFadeDistanceLabel.Name = "LightFadeDistanceLabel";
-            this.LightFadeDistanceLabel.Size = new System.Drawing.Size(74, 13);
+            this.LightFadeDistanceLabel.Size = new System.Drawing.Size(91, 17);
             this.LightFadeDistanceLabel.TabIndex = 281;
             this.LightFadeDistanceLabel.Text = "Light fade dst:";
             // 
             // LightFadeDistanceUpDown
             // 
-            this.LightFadeDistanceUpDown.Location = new System.Drawing.Point(113, 524);
+            this.LightFadeDistanceUpDown.Location = new System.Drawing.Point(132, 685);
+            this.LightFadeDistanceUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LightFadeDistanceUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.LightFadeDistanceUpDown.Name = "LightFadeDistanceUpDown";
-            this.LightFadeDistanceUpDown.Size = new System.Drawing.Size(165, 20);
+            this.LightFadeDistanceUpDown.Size = new System.Drawing.Size(192, 23);
             this.LightFadeDistanceUpDown.TabIndex = 282;
             this.LightFadeDistanceUpDown.Value = new decimal(new int[] {
             255,
@@ -949,22 +1009,24 @@
             // SpecularFadeDistanceLabel
             // 
             this.SpecularFadeDistanceLabel.AutoSize = true;
-            this.SpecularFadeDistanceLabel.Location = new System.Drawing.Point(3, 550);
+            this.SpecularFadeDistanceLabel.Location = new System.Drawing.Point(4, 719);
+            this.SpecularFadeDistanceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SpecularFadeDistanceLabel.Name = "SpecularFadeDistanceLabel";
-            this.SpecularFadeDistanceLabel.Size = new System.Drawing.Size(93, 13);
+            this.SpecularFadeDistanceLabel.Size = new System.Drawing.Size(113, 17);
             this.SpecularFadeDistanceLabel.TabIndex = 361;
             this.SpecularFadeDistanceLabel.Text = "Specular fade dst:";
             // 
             // SpecularFadeDistanceUpDown
             // 
-            this.SpecularFadeDistanceUpDown.Location = new System.Drawing.Point(113, 548);
+            this.SpecularFadeDistanceUpDown.Location = new System.Drawing.Point(132, 717);
+            this.SpecularFadeDistanceUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SpecularFadeDistanceUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.SpecularFadeDistanceUpDown.Name = "SpecularFadeDistanceUpDown";
-            this.SpecularFadeDistanceUpDown.Size = new System.Drawing.Size(165, 20);
+            this.SpecularFadeDistanceUpDown.Size = new System.Drawing.Size(192, 23);
             this.SpecularFadeDistanceUpDown.TabIndex = 362;
             this.SpecularFadeDistanceUpDown.Value = new decimal(new int[] {
             255,
@@ -976,22 +1038,24 @@
             // VolumetricFadeDistanceLabel
             // 
             this.VolumetricFadeDistanceLabel.AutoSize = true;
-            this.VolumetricFadeDistanceLabel.Location = new System.Drawing.Point(3, 574);
+            this.VolumetricFadeDistanceLabel.Location = new System.Drawing.Point(4, 751);
+            this.VolumetricFadeDistanceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VolumetricFadeDistanceLabel.Name = "VolumetricFadeDistanceLabel";
-            this.VolumetricFadeDistanceLabel.Size = new System.Drawing.Size(100, 13);
+            this.VolumetricFadeDistanceLabel.Size = new System.Drawing.Size(125, 17);
             this.VolumetricFadeDistanceLabel.TabIndex = 371;
             this.VolumetricFadeDistanceLabel.Text = "Volumetric fade dst:";
             // 
             // VolumetricFadeDistanceUpDown
             // 
-            this.VolumetricFadeDistanceUpDown.Location = new System.Drawing.Point(113, 571);
+            this.VolumetricFadeDistanceUpDown.Location = new System.Drawing.Point(132, 747);
+            this.VolumetricFadeDistanceUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VolumetricFadeDistanceUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.VolumetricFadeDistanceUpDown.Name = "VolumetricFadeDistanceUpDown";
-            this.VolumetricFadeDistanceUpDown.Size = new System.Drawing.Size(165, 20);
+            this.VolumetricFadeDistanceUpDown.Size = new System.Drawing.Size(192, 23);
             this.VolumetricFadeDistanceUpDown.TabIndex = 372;
             this.VolumetricFadeDistanceUpDown.Value = new decimal(new int[] {
             255,
@@ -1003,9 +1067,10 @@
             // VolumeColorRGBLabel
             // 
             this.VolumeColorRGBLabel.AutoSize = true;
-            this.VolumeColorRGBLabel.Location = new System.Drawing.Point(3, 597);
+            this.VolumeColorRGBLabel.Location = new System.Drawing.Point(4, 781);
+            this.VolumeColorRGBLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VolumeColorRGBLabel.Name = "VolumeColorRGBLabel";
-            this.VolumeColorRGBLabel.Size = new System.Drawing.Size(109, 13);
+            this.VolumeColorRGBLabel.Size = new System.Drawing.Size(133, 17);
             this.VolumeColorRGBLabel.TabIndex = 331;
             this.VolumeColorRGBLabel.Text = "Volume colour (RGB):";
             // 
@@ -1013,22 +1078,24 @@
             // 
             this.VolumeColorLabel.BackColor = System.Drawing.Color.White;
             this.VolumeColorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.VolumeColorLabel.Location = new System.Drawing.Point(113, 595);
+            this.VolumeColorLabel.Location = new System.Drawing.Point(132, 778);
+            this.VolumeColorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VolumeColorLabel.Name = "VolumeColorLabel";
-            this.VolumeColorLabel.Size = new System.Drawing.Size(30, 20);
+            this.VolumeColorLabel.Size = new System.Drawing.Size(35, 26);
             this.VolumeColorLabel.TabIndex = 332;
             this.VolumeColorLabel.Click += new System.EventHandler(this.VolumeColorLabel_Click);
             // 
             // VolumeColorRUpDown
             // 
-            this.VolumeColorRUpDown.Location = new System.Drawing.Point(149, 595);
+            this.VolumeColorRUpDown.Location = new System.Drawing.Point(174, 778);
+            this.VolumeColorRUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VolumeColorRUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.VolumeColorRUpDown.Name = "VolumeColorRUpDown";
-            this.VolumeColorRUpDown.Size = new System.Drawing.Size(38, 20);
+            this.VolumeColorRUpDown.Size = new System.Drawing.Size(44, 23);
             this.VolumeColorRUpDown.TabIndex = 333;
             this.VolumeColorRUpDown.Value = new decimal(new int[] {
             255,
@@ -1039,14 +1106,15 @@
             // 
             // VolumeColorGUpDown
             // 
-            this.VolumeColorGUpDown.Location = new System.Drawing.Point(194, 595);
+            this.VolumeColorGUpDown.Location = new System.Drawing.Point(226, 778);
+            this.VolumeColorGUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VolumeColorGUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.VolumeColorGUpDown.Name = "VolumeColorGUpDown";
-            this.VolumeColorGUpDown.Size = new System.Drawing.Size(38, 20);
+            this.VolumeColorGUpDown.Size = new System.Drawing.Size(44, 23);
             this.VolumeColorGUpDown.TabIndex = 334;
             this.VolumeColorGUpDown.Value = new decimal(new int[] {
             255,
@@ -1057,14 +1125,15 @@
             // 
             // VolumeColorBUpDown
             // 
-            this.VolumeColorBUpDown.Location = new System.Drawing.Point(239, 595);
+            this.VolumeColorBUpDown.Location = new System.Drawing.Point(279, 778);
+            this.VolumeColorBUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VolumeColorBUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.VolumeColorBUpDown.Name = "VolumeColorBUpDown";
-            this.VolumeColorBUpDown.Size = new System.Drawing.Size(38, 20);
+            this.VolumeColorBUpDown.Size = new System.Drawing.Size(44, 23);
             this.VolumeColorBUpDown.TabIndex = 335;
             this.VolumeColorBUpDown.Value = new decimal(new int[] {
             255,
@@ -1076,102 +1145,114 @@
             // VolumeIntensityLabel
             // 
             this.VolumeIntensityLabel.AutoSize = true;
-            this.VolumeIntensityLabel.Location = new System.Drawing.Point(3, 621);
+            this.VolumeIntensityLabel.Location = new System.Drawing.Point(4, 812);
+            this.VolumeIntensityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VolumeIntensityLabel.Name = "VolumeIntensityLabel";
-            this.VolumeIntensityLabel.Size = new System.Drawing.Size(86, 13);
+            this.VolumeIntensityLabel.Size = new System.Drawing.Size(106, 17);
             this.VolumeIntensityLabel.TabIndex = 311;
             this.VolumeIntensityLabel.Text = "Volume intensity:";
             // 
             // VolumeIntensityTextBox
             // 
-            this.VolumeIntensityTextBox.Location = new System.Drawing.Point(113, 618);
+            this.VolumeIntensityTextBox.Location = new System.Drawing.Point(132, 808);
+            this.VolumeIntensityTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VolumeIntensityTextBox.Name = "VolumeIntensityTextBox";
-            this.VolumeIntensityTextBox.Size = new System.Drawing.Size(166, 20);
+            this.VolumeIntensityTextBox.Size = new System.Drawing.Size(193, 23);
             this.VolumeIntensityTextBox.TabIndex = 312;
             this.VolumeIntensityTextBox.TextChanged += new System.EventHandler(this.VolumeIntensityTextBox_TextChanged);
             // 
             // VolumeSizeScaleLabel
             // 
             this.VolumeSizeScaleLabel.AutoSize = true;
-            this.VolumeSizeScaleLabel.Location = new System.Drawing.Point(3, 644);
+            this.VolumeSizeScaleLabel.Location = new System.Drawing.Point(4, 842);
+            this.VolumeSizeScaleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VolumeSizeScaleLabel.Name = "VolumeSizeScaleLabel";
-            this.VolumeSizeScaleLabel.Size = new System.Drawing.Size(94, 13);
+            this.VolumeSizeScaleLabel.Size = new System.Drawing.Size(114, 17);
             this.VolumeSizeScaleLabel.TabIndex = 321;
             this.VolumeSizeScaleLabel.Text = "Volume size scale:";
             // 
             // VolumeSizeScaleTextBox
             // 
-            this.VolumeSizeScaleTextBox.Location = new System.Drawing.Point(113, 642);
+            this.VolumeSizeScaleTextBox.Location = new System.Drawing.Point(132, 840);
+            this.VolumeSizeScaleTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VolumeSizeScaleTextBox.Name = "VolumeSizeScaleTextBox";
-            this.VolumeSizeScaleTextBox.Size = new System.Drawing.Size(166, 20);
+            this.VolumeSizeScaleTextBox.Size = new System.Drawing.Size(193, 23);
             this.VolumeSizeScaleTextBox.TabIndex = 322;
             this.VolumeSizeScaleTextBox.TextChanged += new System.EventHandler(this.VolumeSizeScaleTextBox_TextChanged);
             // 
             // VolumeOuterExponentLabel
             // 
             this.VolumeOuterExponentLabel.AutoSize = true;
-            this.VolumeOuterExponentLabel.Location = new System.Drawing.Point(3, 668);
+            this.VolumeOuterExponentLabel.Location = new System.Drawing.Point(4, 874);
+            this.VolumeOuterExponentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VolumeOuterExponentLabel.Name = "VolumeOuterExponentLabel";
-            this.VolumeOuterExponentLabel.Size = new System.Drawing.Size(92, 13);
+            this.VolumeOuterExponentLabel.Size = new System.Drawing.Size(115, 17);
             this.VolumeOuterExponentLabel.TabIndex = 341;
             this.VolumeOuterExponentLabel.Text = "Volume outer exp:";
             // 
             // VolumeOuterExponentTextBox
             // 
-            this.VolumeOuterExponentTextBox.Location = new System.Drawing.Point(113, 665);
+            this.VolumeOuterExponentTextBox.Location = new System.Drawing.Point(132, 870);
+            this.VolumeOuterExponentTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.VolumeOuterExponentTextBox.Name = "VolumeOuterExponentTextBox";
-            this.VolumeOuterExponentTextBox.Size = new System.Drawing.Size(166, 20);
+            this.VolumeOuterExponentTextBox.Size = new System.Drawing.Size(193, 23);
             this.VolumeOuterExponentTextBox.TabIndex = 342;
             this.VolumeOuterExponentTextBox.TextChanged += new System.EventHandler(this.VolumeOuterExponentTextBox_TextChanged);
             // 
             // CullingPlaneNormalLabel
             // 
             this.CullingPlaneNormalLabel.AutoSize = true;
-            this.CullingPlaneNormalLabel.Location = new System.Drawing.Point(3, 691);
+            this.CullingPlaneNormalLabel.Location = new System.Drawing.Point(4, 904);
+            this.CullingPlaneNormalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CullingPlaneNormalLabel.Name = "CullingPlaneNormalLabel";
-            this.CullingPlaneNormalLabel.Size = new System.Drawing.Size(57, 13);
+            this.CullingPlaneNormalLabel.Size = new System.Drawing.Size(67, 17);
             this.CullingPlaneNormalLabel.TabIndex = 391;
             this.CullingPlaneNormalLabel.Text = "Cull Plane:";
             // 
             // CullingPlaneNormalTextBox
             // 
-            this.CullingPlaneNormalTextBox.Location = new System.Drawing.Point(66, 689);
+            this.CullingPlaneNormalTextBox.Location = new System.Drawing.Point(77, 901);
+            this.CullingPlaneNormalTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CullingPlaneNormalTextBox.Name = "CullingPlaneNormalTextBox";
-            this.CullingPlaneNormalTextBox.Size = new System.Drawing.Size(213, 20);
+            this.CullingPlaneNormalTextBox.Size = new System.Drawing.Size(248, 23);
             this.CullingPlaneNormalTextBox.TabIndex = 392;
             this.CullingPlaneNormalTextBox.TextChanged += new System.EventHandler(this.CullingPlaneNormalTextBox_TextChanged);
             // 
             // CullingPlaneOffsetLabel
             // 
             this.CullingPlaneOffsetLabel.AutoSize = true;
-            this.CullingPlaneOffsetLabel.Location = new System.Drawing.Point(3, 715);
+            this.CullingPlaneOffsetLabel.Location = new System.Drawing.Point(4, 935);
+            this.CullingPlaneOffsetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CullingPlaneOffsetLabel.Name = "CullingPlaneOffsetLabel";
-            this.CullingPlaneOffsetLabel.Size = new System.Drawing.Size(86, 13);
+            this.CullingPlaneOffsetLabel.Size = new System.Drawing.Size(104, 17);
             this.CullingPlaneOffsetLabel.TabIndex = 401;
             this.CullingPlaneOffsetLabel.Text = "Cull Plane offset:";
             // 
             // CullingPlaneOffsetTextBox
             // 
-            this.CullingPlaneOffsetTextBox.Location = new System.Drawing.Point(113, 713);
+            this.CullingPlaneOffsetTextBox.Location = new System.Drawing.Point(132, 932);
+            this.CullingPlaneOffsetTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CullingPlaneOffsetTextBox.Name = "CullingPlaneOffsetTextBox";
-            this.CullingPlaneOffsetTextBox.Size = new System.Drawing.Size(166, 20);
+            this.CullingPlaneOffsetTextBox.Size = new System.Drawing.Size(193, 23);
             this.CullingPlaneOffsetTextBox.TabIndex = 402;
             this.CullingPlaneOffsetTextBox.TextChanged += new System.EventHandler(this.CullingPlaneOffsetTextBox_TextChanged);
             // 
             // TimeFlagsLabel
             // 
             this.TimeFlagsLabel.AutoSize = true;
-            this.TimeFlagsLabel.Location = new System.Drawing.Point(292, 76);
+            this.TimeFlagsLabel.Location = new System.Drawing.Point(341, 99);
+            this.TimeFlagsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TimeFlagsLabel.Name = "TimeFlagsLabel";
-            this.TimeFlagsLabel.Size = new System.Drawing.Size(58, 13);
+            this.TimeFlagsLabel.Size = new System.Drawing.Size(71, 17);
             this.TimeFlagsLabel.TabIndex = 411;
             this.TimeFlagsLabel.Text = "Time flags:";
             // 
             // TimeFlagsTextBox
             // 
-            this.TimeFlagsTextBox.Location = new System.Drawing.Point(354, 73);
+            this.TimeFlagsTextBox.Location = new System.Drawing.Point(413, 95);
+            this.TimeFlagsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TimeFlagsTextBox.Name = "TimeFlagsTextBox";
-            this.TimeFlagsTextBox.Size = new System.Drawing.Size(136, 20);
+            this.TimeFlagsTextBox.Size = new System.Drawing.Size(158, 23);
             this.TimeFlagsTextBox.TabIndex = 412;
             this.TimeFlagsTextBox.TextChanged += new System.EventHandler(this.TimeFlagsTextBox_TextChanged);
             // 
@@ -1192,9 +1273,10 @@
             "09:00 - 10:00",
             "10:00 - 11:00",
             "11:00 - 12:00"});
-            this.TimeFlagsAMCheckedListBox.Location = new System.Drawing.Point(295, 98);
+            this.TimeFlagsAMCheckedListBox.Location = new System.Drawing.Point(344, 128);
+            this.TimeFlagsAMCheckedListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TimeFlagsAMCheckedListBox.Name = "TimeFlagsAMCheckedListBox";
-            this.TimeFlagsAMCheckedListBox.Size = new System.Drawing.Size(95, 184);
+            this.TimeFlagsAMCheckedListBox.Size = new System.Drawing.Size(110, 238);
             this.TimeFlagsAMCheckedListBox.TabIndex = 413;
             this.TimeFlagsAMCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.TimeFlagsAMCheckedListBox_ItemCheck);
             // 
@@ -1215,26 +1297,29 @@
             "21:00 - 22:00",
             "22:00 - 23:00",
             "23:00 - 00:00"});
-            this.TimeFlagsPMCheckedListBox.Location = new System.Drawing.Point(395, 98);
+            this.TimeFlagsPMCheckedListBox.Location = new System.Drawing.Point(461, 128);
+            this.TimeFlagsPMCheckedListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TimeFlagsPMCheckedListBox.Name = "TimeFlagsPMCheckedListBox";
-            this.TimeFlagsPMCheckedListBox.Size = new System.Drawing.Size(95, 184);
+            this.TimeFlagsPMCheckedListBox.Size = new System.Drawing.Size(110, 238);
             this.TimeFlagsPMCheckedListBox.TabIndex = 414;
             this.TimeFlagsPMCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.TimeFlagsPMCheckedListBox_ItemCheck);
             // 
             // FlagsLabel
             // 
             this.FlagsLabel.AutoSize = true;
-            this.FlagsLabel.Location = new System.Drawing.Point(293, 291);
+            this.FlagsLabel.Location = new System.Drawing.Point(342, 381);
+            this.FlagsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.FlagsLabel.Name = "FlagsLabel";
-            this.FlagsLabel.Size = new System.Drawing.Size(35, 13);
+            this.FlagsLabel.Size = new System.Drawing.Size(41, 17);
             this.FlagsLabel.TabIndex = 161;
             this.FlagsLabel.Text = "Flags:";
             // 
             // FlagsTextBox
             // 
-            this.FlagsTextBox.Location = new System.Drawing.Point(333, 288);
+            this.FlagsTextBox.Location = new System.Drawing.Point(388, 377);
+            this.FlagsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FlagsTextBox.Name = "FlagsTextBox";
-            this.FlagsTextBox.Size = new System.Drawing.Size(157, 20);
+            this.FlagsTextBox.Size = new System.Drawing.Size(182, 23);
             this.FlagsTextBox.TabIndex = 162;
             this.FlagsTextBox.TextChanged += new System.EventHandler(this.FlagsTextBox_TextChanged);
             // 
@@ -1277,9 +1362,10 @@
             "Corona Only Lod Light",
             "Delay Render",
             "Already Tested For Occlusion"});
-            this.FlagsCheckedListBox.Location = new System.Drawing.Point(295, 313);
+            this.FlagsCheckedListBox.Location = new System.Drawing.Point(344, 409);
+            this.FlagsCheckedListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FlagsCheckedListBox.Name = "FlagsCheckedListBox";
-            this.FlagsCheckedListBox.Size = new System.Drawing.Size(195, 409);
+            this.FlagsCheckedListBox.Size = new System.Drawing.Size(227, 544);
             this.FlagsCheckedListBox.TabIndex = 413;
             this.FlagsCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.FlagsCheckedListBox_ItemCheck);
             // 
@@ -1294,8 +1380,8 @@
             this.ScaleMenuItem});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.MainMenu.Size = new System.Drawing.Size(673, 28);
+            this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
+            this.MainMenu.Size = new System.Drawing.Size(879, 30);
             this.MainMenu.TabIndex = 1;
             this.MainMenu.Text = "menuStripFix1";
             // 
@@ -1306,13 +1392,13 @@
             this.EditDeleteLightMenu,
             this.EditDuplicateLightMenu});
             this.EditMenu.Name = "EditMenu";
-            this.EditMenu.Size = new System.Drawing.Size(39, 24);
+            this.EditMenu.Size = new System.Drawing.Size(40, 24);
             this.EditMenu.Text = "Edit";
             // 
             // EditNewLightMenu
             // 
             this.EditNewLightMenu.Name = "EditNewLightMenu";
-            this.EditNewLightMenu.Size = new System.Drawing.Size(154, 22);
+            this.EditNewLightMenu.Size = new System.Drawing.Size(158, 22);
             this.EditNewLightMenu.Text = "New Light";
             this.EditNewLightMenu.Click += new System.EventHandler(this.EditNewLightMenu_Click);
             // 
@@ -1320,7 +1406,7 @@
             // 
             this.EditDeleteLightMenu.Enabled = false;
             this.EditDeleteLightMenu.Name = "EditDeleteLightMenu";
-            this.EditDeleteLightMenu.Size = new System.Drawing.Size(154, 22);
+            this.EditDeleteLightMenu.Size = new System.Drawing.Size(158, 22);
             this.EditDeleteLightMenu.Text = "Delete Light";
             this.EditDeleteLightMenu.Click += new System.EventHandler(this.EditDeleteLightMenu_Click);
             // 
@@ -1328,7 +1414,7 @@
             // 
             this.EditDuplicateLightMenu.Enabled = false;
             this.EditDuplicateLightMenu.Name = "EditDuplicateLightMenu";
-            this.EditDuplicateLightMenu.Size = new System.Drawing.Size(154, 22);
+            this.EditDuplicateLightMenu.Size = new System.Drawing.Size(158, 22);
             this.EditDuplicateLightMenu.Text = "Duplicate Light";
             this.EditDuplicateLightMenu.Click += new System.EventHandler(this.EditDuplicateLightMenu_Click);
             // 
@@ -1337,7 +1423,7 @@
             this.OptionsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OptionsShowOutlinesMenu});
             this.OptionsMenu.Name = "OptionsMenu";
-            this.OptionsMenu.Size = new System.Drawing.Size(61, 24);
+            this.OptionsMenu.Size = new System.Drawing.Size(63, 24);
             this.OptionsMenu.Text = "Options";
             this.OptionsMenu.Visible = false;
             // 
@@ -1346,7 +1432,7 @@
             this.OptionsShowOutlinesMenu.Checked = true;
             this.OptionsShowOutlinesMenu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.OptionsShowOutlinesMenu.Name = "OptionsShowOutlinesMenu";
-            this.OptionsShowOutlinesMenu.Size = new System.Drawing.Size(180, 22);
+            this.OptionsShowOutlinesMenu.Size = new System.Drawing.Size(184, 22);
             this.OptionsShowOutlinesMenu.Text = "Show Light Outlines";
             this.OptionsShowOutlinesMenu.Click += new System.EventHandler(this.OptionsShowOutlinesMenu_Click);
             // 
@@ -1377,13 +1463,14 @@
             // 
             // ModelLightForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 774);
+            this.ClientSize = new System.Drawing.Size(879, 1036);
             this.Controls.Add(this.MainSplitContainer);
             this.Controls.Add(this.MainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainMenu;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ModelLightForm";
             this.Text = "Light Editor - CodeWalker by dexyfex";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModelLightForm_FormClosed);

@@ -70,49 +70,58 @@
         '\"',
         '\"',
         '\'',
-        '\''};
+        '\'',
+        '<',
+        '>'};
             this.XmlTextBox.AutoIndentChars = false;
             this.XmlTextBox.AutoIndentCharsPatterns = "";
             this.XmlTextBox.AutoIndentExistingLines = false;
-            this.XmlTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.XmlTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 15);
             this.XmlTextBox.BackBrush = null;
-            this.XmlTextBox.CharHeight = 14;
+            this.XmlTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(130)))), ((int)(((byte)(133)))));
+            this.XmlTextBox.CharHeight = 15;
             this.XmlTextBox.CharWidth = 8;
             this.XmlTextBox.CommentPrefix = null;
             this.XmlTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.XmlTextBox.DelayedEventsInterval = 1;
             this.XmlTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.XmlTextBox.Font = new System.Drawing.Font("Cascadia Code", 9.75F);
+            this.XmlTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.XmlTextBox.IndentBackColor = System.Drawing.SystemColors.Desktop;
             this.XmlTextBox.IsReplaceMode = false;
             this.XmlTextBox.Language = FastColoredTextBoxNS.Language.XML;
             this.XmlTextBox.LeftBracket = '<';
             this.XmlTextBox.LeftBracket2 = '(';
-            this.XmlTextBox.Location = new System.Drawing.Point(0, 52);
+            this.XmlTextBox.Location = new System.Drawing.Point(0, 68);
+            this.XmlTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.XmlTextBox.Name = "XmlTextBox";
             this.XmlTextBox.Paddings = new System.Windows.Forms.Padding(0);
             this.XmlTextBox.RightBracket = '>';
             this.XmlTextBox.RightBracket2 = ')';
             this.XmlTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.XmlTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("XmlTextBox.ServiceColors")));
-            this.XmlTextBox.Size = new System.Drawing.Size(834, 482);
+            this.XmlTextBox.Size = new System.Drawing.Size(973, 630);
             this.XmlTextBox.TabIndex = 0;
             this.XmlTextBox.Zoom = 100;
             this.XmlTextBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.XmlTextBox_TextChanged);
             this.XmlTextBox.VisibleRangeChangedDelayed += new System.EventHandler(this.XmlTextBox_VisibleRangeChangedDelayed);
+            this.XmlTextBox.Load += new System.EventHandler(this.XmlTextBox_Load);
             // 
             // MainStatusStrip
             // 
             this.MainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusLabel});
-            this.MainStatusStrip.Location = new System.Drawing.Point(0, 537);
+            this.MainStatusStrip.Location = new System.Drawing.Point(0, 709);
             this.MainStatusStrip.Name = "MainStatusStrip";
-            this.MainStatusStrip.Size = new System.Drawing.Size(834, 22);
+            this.MainStatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.MainStatusStrip.Size = new System.Drawing.Size(973, 22);
             this.MainStatusStrip.TabIndex = 1;
             this.MainStatusStrip.Text = "Main Status Strip";
             // 
             // StatusLabel
             // 
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(819, 17);
+            this.StatusLabel.Size = new System.Drawing.Size(956, 17);
             this.StatusLabel.Spring = true;
             this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -124,7 +133,8 @@
             this.ViewMenu});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(834, 24);
+            this.MainMenu.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.MainMenu.Size = new System.Drawing.Size(973, 26);
             this.MainMenu.TabIndex = 2;
             this.MainMenu.Text = "Main Menu";
             // 
@@ -138,47 +148,47 @@
             this.toolStripSeparator1,
             this.FileCloseMenu});
             this.FileMenu.Name = "FileMenu";
-            this.FileMenu.Size = new System.Drawing.Size(37, 20);
+            this.FileMenu.Size = new System.Drawing.Size(39, 20);
             this.FileMenu.Text = "File";
             // 
             // FileNewMenu
             // 
             this.FileNewMenu.Name = "FileNewMenu";
-            this.FileNewMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileNewMenu.Size = new System.Drawing.Size(180, 22);
             this.FileNewMenu.Text = "New";
             this.FileNewMenu.Click += new System.EventHandler(this.FileNewMenu_Click);
             // 
             // FileOpenMenu
             // 
             this.FileOpenMenu.Name = "FileOpenMenu";
-            this.FileOpenMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileOpenMenu.Size = new System.Drawing.Size(180, 22);
             this.FileOpenMenu.Text = "Open...";
             this.FileOpenMenu.Click += new System.EventHandler(this.FileOpenMenu_Click);
             // 
             // FileSaveMenu
             // 
             this.FileSaveMenu.Name = "FileSaveMenu";
-            this.FileSaveMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileSaveMenu.Size = new System.Drawing.Size(180, 22);
             this.FileSaveMenu.Text = "Save";
             this.FileSaveMenu.Click += new System.EventHandler(this.FileSaveMenu_Click);
             // 
             // FileSaveAsMenu
             // 
             this.FileSaveAsMenu.Name = "FileSaveAsMenu";
-            this.FileSaveAsMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileSaveAsMenu.Size = new System.Drawing.Size(180, 22);
             this.FileSaveAsMenu.Text = "Save As...";
             this.FileSaveAsMenu.Click += new System.EventHandler(this.FileSaveAsMenu_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // FileCloseMenu
             // 
             this.FileCloseMenu.Name = "FileCloseMenu";
             this.FileCloseMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.FileCloseMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileCloseMenu.Size = new System.Drawing.Size(180, 22);
             this.FileCloseMenu.Text = "Close";
             this.FileCloseMenu.Click += new System.EventHandler(this.FileCloseMenu_Click);
             // 
@@ -186,14 +196,14 @@
             // 
             this.EditMenu.Enabled = false;
             this.EditMenu.Name = "EditMenu";
-            this.EditMenu.Size = new System.Drawing.Size(39, 20);
+            this.EditMenu.Size = new System.Drawing.Size(40, 20);
             this.EditMenu.Text = "Edit";
             // 
             // ViewMenu
             // 
             this.ViewMenu.Enabled = false;
             this.ViewMenu.Name = "ViewMenu";
-            this.ViewMenu.Size = new System.Drawing.Size(44, 20);
+            this.ViewMenu.Size = new System.Drawing.Size(46, 20);
             this.ViewMenu.Text = "View";
             // 
             // MainToolbar
@@ -202,9 +212,9 @@
             this.NewButton,
             this.OpenButton,
             this.SaveButton});
-            this.MainToolbar.Location = new System.Drawing.Point(0, 24);
+            this.MainToolbar.Location = new System.Drawing.Point(0, 26);
             this.MainToolbar.Name = "MainToolbar";
-            this.MainToolbar.Size = new System.Drawing.Size(834, 25);
+            this.MainToolbar.Size = new System.Drawing.Size(973, 25);
             this.MainToolbar.TabIndex = 3;
             this.MainToolbar.Text = "Main Toolbar";
             // 
@@ -241,6 +251,7 @@
             // OpenFileDialog
             // 
             this.OpenFileDialog.Filter = "XML files|*.xml|All files|*.*";
+            this.OpenFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenFileDialog_FileOk);
             // 
             // SaveFileDialog
             // 
@@ -248,15 +259,16 @@
             // 
             // XmlForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 559);
+            this.ClientSize = new System.Drawing.Size(973, 731);
             this.Controls.Add(this.MainToolbar);
             this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.XmlTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainMenu;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "XmlForm";
             this.Text = "XML Editor - CodeWalker by dexyfex";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XmlForm_FormClosing);

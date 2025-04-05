@@ -364,5 +364,10 @@ namespace CodeWalker.Forms
         {
             e.Cancel = !CloseDocument();
         }
+
+        private void MainTextBox_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

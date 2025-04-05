@@ -74,44 +74,49 @@
             this.MainTextBox.AutoIndentChars = false;
             this.MainTextBox.AutoIndentCharsPatterns = "";
             this.MainTextBox.AutoIndentExistingLines = false;
-            this.MainTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.MainTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 15);
             this.MainTextBox.BackBrush = null;
-            this.MainTextBox.CharHeight = 14;
+            this.MainTextBox.BackColor = System.Drawing.Color.Transparent;
+            this.MainTextBox.CharHeight = 15;
             this.MainTextBox.CharWidth = 8;
             this.MainTextBox.CommentPrefix = null;
             this.MainTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.MainTextBox.DelayedEventsInterval = 10;
             this.MainTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.MainTextBox.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.MainTextBox.Font = new System.Drawing.Font("Cascadia Code PL", 10F);
+            this.MainTextBox.IndentBackColor = System.Drawing.Color.Black;
             this.MainTextBox.IsReplaceMode = false;
             this.MainTextBox.LeftBracket = '<';
             this.MainTextBox.LeftBracket2 = '(';
-            this.MainTextBox.Location = new System.Drawing.Point(0, 52);
+            this.MainTextBox.Location = new System.Drawing.Point(0, 68);
+            this.MainTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MainTextBox.Name = "MainTextBox";
             this.MainTextBox.Paddings = new System.Windows.Forms.Padding(0);
             this.MainTextBox.RightBracket = '>';
             this.MainTextBox.RightBracket2 = ')';
             this.MainTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.MainTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("MainTextBox.ServiceColors")));
-            this.MainTextBox.Size = new System.Drawing.Size(823, 461);
+            this.MainTextBox.Size = new System.Drawing.Size(960, 603);
             this.MainTextBox.TabIndex = 0;
             this.MainTextBox.Zoom = 100;
             this.MainTextBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.MainTextBox_TextChanged);
+            this.MainTextBox.Load += new System.EventHandler(this.MainTextBox_Load);
             // 
             // MainStatusStrip
             // 
             this.MainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusLabel});
-            this.MainStatusStrip.Location = new System.Drawing.Point(0, 516);
+            this.MainStatusStrip.Location = new System.Drawing.Point(0, 682);
             this.MainStatusStrip.Name = "MainStatusStrip";
-            this.MainStatusStrip.Size = new System.Drawing.Size(823, 22);
+            this.MainStatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.MainStatusStrip.Size = new System.Drawing.Size(960, 22);
             this.MainStatusStrip.TabIndex = 1;
             this.MainStatusStrip.Text = "Main Status Strip";
             // 
             // StatusLabel
             // 
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(808, 17);
+            this.StatusLabel.Size = new System.Drawing.Size(943, 17);
             this.StatusLabel.Spring = true;
             this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -123,7 +128,8 @@
             this.ViewMenu});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(823, 24);
+            this.MainMenu.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.MainMenu.Size = new System.Drawing.Size(960, 26);
             this.MainMenu.TabIndex = 2;
             this.MainMenu.Text = "Main Menu";
             // 
@@ -137,47 +143,47 @@
             this.toolStripSeparator1,
             this.FileCloseMenu});
             this.FileMenu.Name = "FileMenu";
-            this.FileMenu.Size = new System.Drawing.Size(37, 20);
+            this.FileMenu.Size = new System.Drawing.Size(39, 20);
             this.FileMenu.Text = "File";
             // 
             // FileNewMenu
             // 
             this.FileNewMenu.Name = "FileNewMenu";
-            this.FileNewMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileNewMenu.Size = new System.Drawing.Size(151, 22);
             this.FileNewMenu.Text = "New";
             this.FileNewMenu.Click += new System.EventHandler(this.FileNewMenu_Click);
             // 
             // FileOpenMenu
             // 
             this.FileOpenMenu.Name = "FileOpenMenu";
-            this.FileOpenMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileOpenMenu.Size = new System.Drawing.Size(151, 22);
             this.FileOpenMenu.Text = "Open...";
             this.FileOpenMenu.Click += new System.EventHandler(this.FileOpenMenu_Click);
             // 
             // FileSaveMenu
             // 
             this.FileSaveMenu.Name = "FileSaveMenu";
-            this.FileSaveMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileSaveMenu.Size = new System.Drawing.Size(151, 22);
             this.FileSaveMenu.Text = "Save";
             this.FileSaveMenu.Click += new System.EventHandler(this.FileSaveMenu_Click);
             // 
             // FileSaveAsMenu
             // 
             this.FileSaveAsMenu.Name = "FileSaveAsMenu";
-            this.FileSaveAsMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileSaveAsMenu.Size = new System.Drawing.Size(151, 22);
             this.FileSaveAsMenu.Text = "Save As...";
             this.FileSaveAsMenu.Click += new System.EventHandler(this.FileSaveAsMenu_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
             // 
             // FileCloseMenu
             // 
             this.FileCloseMenu.Name = "FileCloseMenu";
             this.FileCloseMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.FileCloseMenu.Size = new System.Drawing.Size(145, 22);
+            this.FileCloseMenu.Size = new System.Drawing.Size(151, 22);
             this.FileCloseMenu.Text = "Close";
             this.FileCloseMenu.Click += new System.EventHandler(this.FileCloseMenu_Click);
             // 
@@ -185,14 +191,14 @@
             // 
             this.EditMenu.Enabled = false;
             this.EditMenu.Name = "EditMenu";
-            this.EditMenu.Size = new System.Drawing.Size(39, 20);
+            this.EditMenu.Size = new System.Drawing.Size(40, 20);
             this.EditMenu.Text = "Edit";
             // 
             // ViewMenu
             // 
             this.ViewMenu.Enabled = false;
             this.ViewMenu.Name = "ViewMenu";
-            this.ViewMenu.Size = new System.Drawing.Size(44, 20);
+            this.ViewMenu.Size = new System.Drawing.Size(46, 20);
             this.ViewMenu.Text = "View";
             // 
             // MainToolbar
@@ -201,9 +207,9 @@
             this.NewButton,
             this.OpenButton,
             this.SaveButton});
-            this.MainToolbar.Location = new System.Drawing.Point(0, 24);
+            this.MainToolbar.Location = new System.Drawing.Point(0, 26);
             this.MainToolbar.Name = "MainToolbar";
-            this.MainToolbar.Size = new System.Drawing.Size(823, 25);
+            this.MainToolbar.Size = new System.Drawing.Size(960, 25);
             this.MainToolbar.TabIndex = 3;
             this.MainToolbar.Text = "Main Toolbar";
             // 
@@ -248,15 +254,16 @@
             // 
             // TextForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(823, 538);
+            this.ClientSize = new System.Drawing.Size(960, 704);
             this.Controls.Add(this.MainToolbar);
             this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.MainTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainMenu;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TextForm";
             this.Text = "Text Editor - CodeWalker by dexyfex";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TextForm_FormClosing);

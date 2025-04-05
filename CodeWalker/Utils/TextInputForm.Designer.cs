@@ -53,19 +53,23 @@
         '\"',
         '\'',
         '\''};
-            this.MainTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.MainTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 15);
             this.MainTextBox.BackBrush = null;
-            this.MainTextBox.CharHeight = 14;
+            this.MainTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(130)))), ((int)(((byte)(133)))));
+            this.MainTextBox.CharHeight = 15;
             this.MainTextBox.CharWidth = 8;
             this.MainTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.MainTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.MainTextBox.Font = new System.Drawing.Font("Cascadia Code", 9.75F);
+            this.MainTextBox.IndentBackColor = System.Drawing.Color.Black;
             this.MainTextBox.IsReplaceMode = false;
-            this.MainTextBox.Location = new System.Drawing.Point(1, 36);
+            this.MainTextBox.Location = new System.Drawing.Point(1, 47);
+            this.MainTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MainTextBox.Name = "MainTextBox";
             this.MainTextBox.Paddings = new System.Windows.Forms.Padding(0);
             this.MainTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.MainTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("MainTextBox.ServiceColors")));
-            this.MainTextBox.Size = new System.Drawing.Size(658, 317);
+            this.MainTextBox.Size = new System.Drawing.Size(756, 415);
             this.MainTextBox.TabIndex = 0;
             this.MainTextBox.Zoom = 100;
             this.MainTextBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.MainTextBox_TextChanged);
@@ -73,9 +77,10 @@
             // OkButton
             // 
             this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OkButton.Location = new System.Drawing.Point(573, 362);
+            this.OkButton.Location = new System.Drawing.Point(668, 473);
+            this.OkButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(75, 23);
+            this.OkButton.Size = new System.Drawing.Size(88, 30);
             this.OkButton.TabIndex = 1;
             this.OkButton.Text = "Ok";
             this.OkButton.UseVisualStyleBackColor = true;
@@ -84,9 +89,10 @@
             // CancelThisButton
             // 
             this.CancelThisButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelThisButton.Location = new System.Drawing.Point(492, 362);
+            this.CancelThisButton.Location = new System.Drawing.Point(574, 473);
+            this.CancelThisButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CancelThisButton.Name = "CancelThisButton";
-            this.CancelThisButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelThisButton.Size = new System.Drawing.Size(88, 30);
             this.CancelThisButton.TabIndex = 2;
             this.CancelThisButton.Text = "Cancel";
             this.CancelThisButton.UseVisualStyleBackColor = true;
@@ -97,22 +103,24 @@
             this.PromptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PromptLabel.AutoEllipsis = true;
-            this.PromptLabel.Location = new System.Drawing.Point(12, 5);
+            this.PromptLabel.Location = new System.Drawing.Point(14, 7);
+            this.PromptLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PromptLabel.Name = "PromptLabel";
-            this.PromptLabel.Size = new System.Drawing.Size(636, 28);
+            this.PromptLabel.Size = new System.Drawing.Size(742, 37);
             this.PromptLabel.TabIndex = 3;
             this.PromptLabel.Text = "Please input text:";
             // 
             // TextInputForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 397);
+            this.ClientSize = new System.Drawing.Size(770, 519);
             this.Controls.Add(this.PromptLabel);
             this.Controls.Add(this.CancelThisButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.MainTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TextInputForm";
             this.Text = "Text Input - CodeWalker by dexyfex";
             ((System.ComponentModel.ISupportInitialize)(this.MainTextBox)).EndInit();
