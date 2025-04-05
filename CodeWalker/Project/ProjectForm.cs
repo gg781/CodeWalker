@@ -137,7 +137,7 @@ namespace CodeWalker.Project
                 GameFileCache = GameFileCacheFactory.Create();
                 new Thread(new ThreadStart(() =>
                 {
-                    GTA5Keys.LoadFromPath(GTAFolder.CurrentGTAFolder, Settings.Default.Key);
+                    GTA5Keys.LoadFromPath(GTAFolder.CurrentGTAFolder, GTAFolder.IsGen9, Settings.Default.Key);
                     GameFileCache.Init(UpdateStatus, UpdateError);
                     RpfMan = GameFileCache.RpfMan;
                 })).Start();
@@ -1154,7 +1154,7 @@ namespace CodeWalker.Project
             CurrentProjectFile = new ProjectFile();
             CurrentProjectFile.Name = "New CodeWalker Project";
             CurrentProjectFile.Version = 1;
-            CurrentProjectFile.HasChanged = true;
+            CurrentProjectFile.HasChanged = false;
             LoadProjectUI();
         }
         public void OpenProject()
@@ -3230,7 +3230,7 @@ namespace CodeWalker.Project
                     cent.scaleZ = 1.0f;
                     cent.flags = placement.Dynamic ? 0 : 32u;// 1572872; //32 = static
                     cent.parentIndex = -1;
-                    cent.lodDist = (placement.LodDistance < 10000) ? placement.LodDistance : -1;
+                    cent.lodDist = (placement.LodDistance < 10000 ) ? placement.LodDistance : 10000;
                     cent.lodLevel = rage__eLodType.LODTYPES_DEPTH_ORPHANHD;
                     cent.priorityLevel = rage__ePriorityLevel.PRI_REQUIRED;
                     cent.ambientOcclusionMultiplier = 255;
@@ -8779,30 +8779,35 @@ namespace CodeWalker.Project
         private void LoadYndFromFile(YndFile ynd, string filename)
         {
             byte[] data = File.ReadAllBytes(filename);
-
             ynd.Load(data);
             WorldForm.Space.PatchYndFile(ynd);
 
             if (WorldForm != null)
             {
-                // TODO: Wasteful -- be smarter about this
+                HashSet<YndFile> updatedFiles = new HashSet<YndFile>();
+                Dictionary<YndFile, List<YndFile>> dependencyCache = new Dictionary<YndFile, List<YndFile>>();
+
                 foreach (var file in CurrentProjectFile.YndFiles)
                 {
-                    foreach (var affected in WorldForm.Space.GetYndFilesThatDependOnYndFile(file))
+                    if (!dependencyCache.TryGetValue(file, out var dependencies))
                     {
-                        if (CurrentProjectFile.ContainsYnd(affected))
-                        {
-                            continue;
-                        }
-
-                        WorldForm.UpdatePathYndGraphics(affected, true);
+                        dependencies = WorldForm.Space.GetYndFilesThatDependOnYndFile(file).ToList();
+                        dependencyCache[file] = dependencies;
                     }
 
-                    WorldForm.UpdatePathYndGraphics(file, true); //links don't get drawn until something changes otherwise
+                    foreach (var affected in dependencies)
+                    {
+                        if (!CurrentProjectFile.ContainsYnd(affected) && updatedFiles.Add(affected))
+                        {
+                            WorldForm.UpdatePathYndGraphics(affected, true);
+                        }
+                    }
+
+                    WorldForm.UpdatePathYndGraphics(file, true); // No need for HashSet check here
                 }
-                //note: this is actually necessary to properly populate junctions data........
             }
         }
+
         private void LoadYnvFromFile(YnvFile ynv, string filename)
         {
             byte[] data = File.ReadAllBytes(filename);
@@ -9400,7 +9405,7 @@ namespace CodeWalker.Project
 
         private void ProjectForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (CurrentProjectFile != null)
+            if (CurrentProjectFile?.HasChanged ?? false)
             {
                 var msg = "Are you sure you want to close the project window?";
                 var tit = "Confirm close";

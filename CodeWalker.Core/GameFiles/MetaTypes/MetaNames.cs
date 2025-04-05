@@ -9932,6 +9932,7 @@ namespace CodeWalker.GameFiles
         lightType = 482065968,
         groupId = 2501631252,
         cullingPlane = 1689591312,
+        padding0 = 1941482115,
         padding1 = 3180641850,
         padding2 = 2346113727,
         padding3 = 3521603295,
@@ -20649,5 +20650,28 @@ namespace CodeWalker.GameFiles
         MinVehVelMagForBicycleSideSwipeCNC = 4160452608,
         bUseAmmoCaching = 1408872353,
         CrimeInfosArcadeCNC = 2698893089,
+
+
+        //scenario flags
+        ChooseModelFromDriversWhenAttachedToVehicle = 3369967320,
+        DontActivateRagdollForCollisionWithAnyPedImpact = 2836407593,
+        DontActivateRagdollForCollisionWithPlayerRagdollImpact = 1121167016,
+        DontSpawnWithHighWantedLevel = 4012275818,
+        DrivingVehicleScenario = 231600990,
+        IgnoreCreationZones = 556209950,
+        IgnoredByCars = 1483007959,
+        OnlySpawnWithHighWantedLevel = 1458403396,
+        QuitWithNoProp = 2247205221,
+        UseLastTypeUsageTimer = 3219390705,
+        BlockNonTempEvents = 2186016405,
+        DisableSpeaking = 2031098696,
+        DontSpawnOnConcealedPlayerMachines = 1244505495,
+        PermanentlyDisablePedImpacts = 2531768524,
+        AlwaysAttachToWorld = 1216274607,
+        AllowPlayerIgnoreSpawnRestrictions = 889046320,
+        CheckForObstructionEvenInClusters = 676804087,
+        IgnoreShockingPlayerRunOverEvent = 3954306790,
+        ForceWantedLevelWhenKilled = 3646964027,
+
     }
 }
