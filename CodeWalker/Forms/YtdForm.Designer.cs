@@ -317,6 +317,7 @@
             // 
             // TexturesListView
             // 
+            this.TexturesListView.AllowDrop = true;
             this.TexturesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -334,6 +335,8 @@
             this.TexturesListView.UseCompatibleStateImageBehavior = false;
             this.TexturesListView.View = System.Windows.Forms.View.Details;
             this.TexturesListView.SelectedIndexChanged += new System.EventHandler(this.TexturesListView_SelectedIndexChanged);
+            this.TexturesListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.TexturesListView_DragDrop);
+            this.TexturesListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.TexturesListView_DragEnter);
             // 
             // TextureNameColumnHeader
             // 

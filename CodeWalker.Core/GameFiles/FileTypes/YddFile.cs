@@ -89,7 +89,7 @@ namespace CodeWalker.GameFiles
                 {
                     var drawable = drawables[i];
                     var hash = hashes[i];
-                    if ((drawable.Name == null) || (drawable.Name.EndsWith("#dd")) || (drawable.Name.EndsWith("#dr"))) 
+                    if ((drawable.Name == null) || (JenkHash.GenHash(drawable.Name) != hash))
                     {
                         drawable.Name = YddXml.HashString((MetaHash)hash);
                     }

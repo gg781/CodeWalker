@@ -1154,7 +1154,7 @@ namespace CodeWalker.Project
             CurrentProjectFile = new ProjectFile();
             CurrentProjectFile.Name = "New CodeWalker Project";
             CurrentProjectFile.Version = 1;
-            CurrentProjectFile.HasChanged = true;
+            CurrentProjectFile.HasChanged = false;
             LoadProjectUI();
         }
         public void OpenProject()
@@ -3230,7 +3230,7 @@ namespace CodeWalker.Project
                     cent.scaleZ = 1.0f;
                     cent.flags = placement.Dynamic ? 0 : 32u;// 1572872; //32 = static
                     cent.parentIndex = -1;
-                    cent.lodDist = (placement.LodDistance < 10000) ? placement.LodDistance : -1;
+                    cent.lodDist = (placement.LodDistance < 10000 ) ? placement.LodDistance : 10000;
                     cent.lodLevel = rage__eLodType.LODTYPES_DEPTH_ORPHANHD;
                     cent.priorityLevel = rage__ePriorityLevel.PRI_REQUIRED;
                     cent.ambientOcclusionMultiplier = 255;
@@ -9405,7 +9405,7 @@ namespace CodeWalker.Project
 
         private void ProjectForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (CurrentProjectFile != null)
+            if (CurrentProjectFile?.HasChanged ?? false)
             {
                 var msg = "Are you sure you want to close the project window?";
                 var tit = "Confirm close";
