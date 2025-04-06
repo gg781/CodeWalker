@@ -824,7 +824,7 @@ namespace CodeWalker
 
                         node = CreateRpfTreeFolder(rpf, relpath, path);
 
-                        RecurseMainTreeViewRPF(node, allRpfs);
+                        RecurseMainTreeViewRPF(node, allRpfs, extra ? f.Path : null);
 
                         if (parentnode != null)
                         {
@@ -868,9 +868,13 @@ namespace CodeWalker
             }
 
         }
-        private void RecurseMainTreeViewRPF(MainTreeFolder f, List<RpfFile> allRpfs)
+        private void RecurseMainTreeViewRPF(MainTreeFolder f, List<RpfFile> allRpfs, string rootpath = null)
         {
-            var rootpath = GTAFolder.GetCurrentGTAFolderWithTrailingSlash();
+            var gamepath = GTAFolder.GetCurrentGTAFolderWithTrailingSlash();
+            if (rootpath == null)
+            {
+                rootpath = gamepath;
+            }
 
             var fld = f.RpfFolder;
             if (fld != null)
@@ -882,13 +886,13 @@ namespace CodeWalker
                         var relpath = dir.Path.Substring(fld.Path.Length);
                         var fullpath = f.FullPath + relpath;
                         var dirpath = dir.Path;
-                        if (fullpath.StartsWith(rootpath, StringComparison.InvariantCultureIgnoreCase) == false)
+                        if (fullpath.StartsWith(gamepath, StringComparison.InvariantCultureIgnoreCase) == false)
                         {
                             dirpath = fullpath;
                         }
                         var dtnf = CreateRpfDirTreeFolder(dir, dirpath, fullpath);
                         f.AddChild(dtnf);
-                        RecurseMainTreeViewRPF(dtnf, allRpfs);
+                        RecurseMainTreeViewRPF(dtnf, allRpfs, rootpath);
                     }
                 }
             }
@@ -902,9 +906,10 @@ namespace CodeWalker
                 {
                     foreach (var child in rpf.Children)
                     {
-                        var ctnf = CreateRpfTreeFolder(child, child.Path, rootpath + child.Path);
+                        var cpath = rootpath + child.Path;
+                        var ctnf = CreateRpfTreeFolder(child, (rootpath != gamepath) ? cpath : child.Path, cpath);
                         f.AddChildToHierarchy(ctnf);
-                        RecurseMainTreeViewRPF(ctnf, allRpfs);
+                        RecurseMainTreeViewRPF(ctnf, allRpfs, rootpath);
                     }
                 }
 
@@ -2228,19 +2233,23 @@ namespace CodeWalker
 
             if (rpf == null) return false;
 
+            if (RpfFile.IsValidEncryption(rpf, recursive)) return true;//it's already valid...
+
             var msgr = recursive ? "(including all its parents and children) " : "";
             var msg1 = $"Are you sure you want to change this archive {msgr}to OPEN encryption?";
             var msg2 = "Loading by the game will require a mod loader such as OpenRPF.asi or OpenIV.asi.";
 
             var confirm = new Func<RpfFile, bool>((f) => 
             {
-                var msg = $"Archive {f.Name} is currently set to {f.Encryption} encryption.\n{msg1}\n{msg2}";
+                var msg0 = (f != null) ? $"Archive {f.Name} is currently set to {f.Encryption} encryption.\n" : "";
+                var msg = $"{msg0}{msg1}\n{msg2}";
                 return (MessageBox.Show(msg, "Change RPF encryption type", MessageBoxButtons.YesNo) == DialogResult.Yes);
             });
 
+
             if (recursive)
             {
-                if (confirm(rpf) == false)
+                if (confirm(null) == false)
                 {
                     return false;
                 }
@@ -2896,22 +2905,37 @@ namespace CodeWalker
                         continue;
                     }
 
-                    var trimlength = 4;
-                    var mformat = XmlMeta.GetXMLFormat(fnamel, out trimlength);
-
-                    fname = fname.Substring(0, fname.Length - trimlength);
-                    fnamel = fnamel.Substring(0, fnamel.Length - trimlength);
-                    fpathin = fpathin.Substring(0, fpathin.Length - trimlength);
-                    fpathin = Path.Combine(Path.GetDirectoryName(fpathin), Path.GetFileNameWithoutExtension(fpathin));
-
-                    var doc = new XmlDocument();
-                    string text = File.ReadAllText(fpath);
-                    if (!string.IsNullOrEmpty(text))
+                    byte[] data = null;
+                    var mformat = MetaFormat.XML;
+                    if (fnamel.IndexOf('.') == fnamel.LastIndexOf('.'))
                     {
-                        doc.LoadXml(text);
+                        //the user has selected import XML option, but this file is just an ordinary XML file.
+                        //import this file directly instead of attempting XML conversion.
+
+                        data = File.ReadAllBytes(fpath);
+
+                    }
+                    else
+                    {
+                        var trimlength = 4;
+                        mformat = XmlMeta.GetXMLFormat(fnamel, out trimlength);
+
+                        fname = fname.Substring(0, fname.Length - trimlength);
+                        fnamel = fnamel.Substring(0, fnamel.Length - trimlength);
+                        fpathin = fpathin.Substring(0, fpathin.Length - trimlength);
+                        fpathin = Path.Combine(Path.GetDirectoryName(fpathin), Path.GetFileNameWithoutExtension(fpathin));
+
+                        var doc = new XmlDocument();
+                        string text = File.ReadAllText(fpath);
+                        if (!string.IsNullOrEmpty(text))
+                        {
+                            doc.LoadXml(text);
+                        }
+
+                        data = XmlMeta.GetData(doc, mformat, fpathin);
+
                     }
 
-                    byte[] data = XmlMeta.GetData(doc, mformat, fpathin);
 
                     if (data != null)
                     {

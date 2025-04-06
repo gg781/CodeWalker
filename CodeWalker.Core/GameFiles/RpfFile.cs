@@ -315,9 +315,8 @@ namespace CodeWalker.GameFiles
                     {
                         RpfBinaryFileEntry binentry = entry as RpfBinaryFileEntry;
 
-                        //search all the sub resources for YSC files. (recurse!)
-                        string lname = binentry.NameLower;
-                        if (lname.EndsWith(".rpf") && binentry.Path.Length < 5000) // a long path is most likely an attempt to crash CW, so skip it
+                        var lname = binentry.NameLower;
+                        if (lname.EndsWith(".rpf") && IsValidPath(binentry.Path))
                         {
                             br.BaseStream.Position = StartPos + ((long)binentry.FileOffset * 512);
 
@@ -1892,6 +1891,43 @@ namespace CodeWalker.GameFiles
         }
 
 
+        public static bool IsValidEncryption(RpfFile file, bool recursive = false)
+        {
+            if (file == null) return false;
+
+            if (file.Encryption != RpfEncryption.OPEN) return false;
+
+            var parent = file.Parent;
+            while (parent != null)
+            {
+                if (parent.Encryption != RpfEncryption.OPEN) return false;
+                parent = parent.Parent;
+            }
+
+            if (recursive && (file.Children != null))
+            {
+                var stack = new Stack<RpfFile>(file.Children);
+                while (stack.Count > 0)
+                {
+                    var child = stack.Pop();
+                    if (child == null) continue;
+                    if (child.Encryption != RpfEncryption.OPEN)
+                    {
+                        return false;
+                    }
+                    if (child.Children != null)
+                    {
+                        foreach (var cchild in child.Children)
+                        {
+                            stack.Push(cchild);
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public static bool EnsureValidEncryption(RpfFile file, Func<RpfFile, bool> confirm, bool recursive = false)
         {
             if (file == null) return false;
@@ -2079,6 +2115,23 @@ namespace CodeWalker.GameFiles
                 dirpath = dirpath + "\\";
             }
             return dirpath;
+        }
+
+        private static bool IsValidPath(string path)
+        {
+            if (string.IsNullOrEmpty(path)) return false;
+            if (path.Length > 500) return false; //a long path is most likely an attempt to crash CW, so skip it
+            var dirc = 0;
+            for (int i = 0; i < path.Length; i++)
+            {
+                var c = path[i];
+                if (c == ':') return false; //what kind of person puts this in a file name?
+                if (c == ';') return false;
+                if (c == '/') dirc++;
+                if (c == '\\') dirc++;
+            }
+            if (dirc > 20) return false;//20 levels deep.. are you mad?!?
+            return true;
         }
 
 
